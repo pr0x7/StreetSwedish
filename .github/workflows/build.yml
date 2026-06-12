@@ -1,0 +1,35 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build App for iOS (Unsigned)
+        run: |
+          xcodebuild -scheme StreetSwedish \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            clean build
+
+      - name: Create IPA Package
+        run: |
+          mkdir Payload
+          cp -r build/Build/Products/Release-iphoneos/StreetSwedish.app Payload/
+          zip -r StreetSwedish.ipa Payload
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: StreetSwedish-Unsigned-IPA
+          path: StreetSwedish.ipa

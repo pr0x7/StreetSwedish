@@ -1,0 +1,10 @@
+.DS_Store
+build/
+DerivedData/
+.git/
+*.moved-aside
+*.xcuserstate
+xcuserdata/
+.idea/
+*.iws
+.vscode/
