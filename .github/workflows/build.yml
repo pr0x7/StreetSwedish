@@ -41,3 +41,7 @@ jobs:
         with:
           name: Xcodebuild-Log
           path: xcodebuild.log
+
+      - name: Print Xcodebuild Log on Failure
+        if: failure()
+        run: cat xcodebuild.log
