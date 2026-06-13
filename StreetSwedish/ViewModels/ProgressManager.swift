@@ -92,6 +92,7 @@ public final class ProgressManager: ObservableObject {
             let percent = Double(completedLessonsCount) / Double(totalLessons)
             
             progress.categoryProgressMap[categoryID] = percent
+            progress.categoryProgressMap[moduleID] = percent
         }
         
         progress.moduleProgressMap[moduleID] = moduleProgress

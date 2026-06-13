@@ -45,6 +45,12 @@ public struct WordCard: View {
                         .font(.sfRounded(size: 16, weight: .semibold))
                         .foregroundColor(.textSecondary)
                     
+                    Text(item.english)
+                        .font(.sfStandard(size: 20, weight: .bold))
+                        .foregroundColor(.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 4)
+                    
                     // Audio & Wave Visualizer
                     HStack(spacing: 12) {
                         Button(action: {

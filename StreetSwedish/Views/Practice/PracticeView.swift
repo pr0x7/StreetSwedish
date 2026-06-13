@@ -72,16 +72,35 @@ public struct PracticeView: View {
                                 .background(Color.primaryGold)
                                 .cornerRadius(16)
                         }
-                    } else if unseenCount > 0 {
-                        // Encourage learning new words
-                        NavigationLink(destination: CoursesView()) {
-                            Text(progressManager.loc("Learn new words", "Lär dig nya ord"))
-                                .font(.sfRounded(size: 16, weight: .bold))
-                                .foregroundColor(.appBackground)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.primaryBlue)
-                                .cornerRadius(16)
+                    } else {
+                        let learnedCount = LessonData.allVocabItems.map { $0.id }.filter { id in
+                            let item = srsScheduler.items[id]
+                            return item != nil && item!.stage > 0
+                        }.count
+                        
+                        if learnedCount > 0 {
+                            Button(action: {
+                                startPracticeAllSeen()
+                            }) {
+                                Text(progressManager.loc("Practice anyway", "Öva ändå"))
+                                    .font(.sfRounded(size: 16, weight: .bold))
+                                    .foregroundColor(.appBackground)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.primaryBlue)
+                                    .cornerRadius(16)
+                            }
+                        } else if unseenCount > 0 {
+                            // Encourage learning new words
+                            NavigationLink(destination: CoursesView()) {
+                                Text(progressManager.loc("Learn new words", "Lär dig nya ord"))
+                                    .font(.sfRounded(size: 16, weight: .bold))
+                                    .foregroundColor(.appBackground)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.primaryBlue)
+                                    .cornerRadius(16)
+                            }
                         }
                     }
                 }
@@ -355,6 +374,22 @@ public struct PracticeView: View {
     private func startReviews() {
         let allIDs = LessonData.allVocabItems.map { $0.id }
         reviewQueue = srsScheduler.getDailyQueue(allItemIDs: allIDs)
+        currentQueueIndex = 0
+        isCardFlipped = false
+        
+        if !reviewQueue.isEmpty {
+            withAnimation {
+                isReviewActive = true
+            }
+        }
+    }
+    
+    private func startPracticeAllSeen() {
+        let allIDs = LessonData.allVocabItems.map { $0.id }
+        reviewQueue = allIDs.filter { id in
+            let item = srsScheduler.items[id]
+            return item != nil && item!.stage > 0
+        }
         currentQueueIndex = 0
         isCardFlipped = false
         

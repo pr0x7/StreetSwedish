@@ -13,6 +13,7 @@ let package = Package(
             targets: ["StreetSwedish"],
             displayVersion: "1.0.0",
             bundleVersion: "1",
+            appIcon: .asset("AppIcon"),
             supportedDeviceFamilies: [
                 .pad,
                 .phone

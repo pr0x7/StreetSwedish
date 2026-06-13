@@ -82,6 +82,10 @@ public struct CoursesView: View {
             }
             .onAppear {
                 startBreathingAnimation()
+                let nextLesson = getNextLessonToStudy()
+                if let module = LessonData.getModule(byID: nextLesson.moduleID) {
+                    selectedCategory = module.categoryID
+                }
             }
         }
     }
@@ -350,5 +354,14 @@ public struct CoursesView: View {
         ) {
             breathScale = 1.05
         }
+    }
+    
+    private func getNextLessonToStudy() -> Lesson {
+        for lesson in LessonData.allLessons {
+            if !progressManager.progress.completedLessonIDs.contains(lesson.id) {
+                return lesson
+            }
+        }
+        return LessonData.allLessons[0]
     }
 }
