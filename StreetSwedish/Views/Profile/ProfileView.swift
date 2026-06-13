@@ -32,7 +32,7 @@ public struct ProfileView: View {
                                     .foregroundColor(.primaryBlue)
                                     .font(.title3)
                                 
-                                Text("Visa framstegskarta (Progress Map)")
+                                Text(progressManager.loc("View Progress Map", "Visa framstegskarta"))
                                     .font(.sfRounded(size: 16, weight: .bold))
                                     .foregroundColor(.textPrimary)
                                 
@@ -56,23 +56,23 @@ public struct ProfileView: View {
                     .padding(20)
                 }
             }
-            .navigationTitle("Profil (Profile)")
+            .navigationTitle(progressManager.loc("Profile", "Profil"))
             .navigationBarTitleDisplayMode(.inline)
-            .alert("Radera all data?", isPresented: $showingResetConfirmation) {
-                Button("Avbryt", role: .cancel) {}
-                Button("Fortsätt", role: .destructive) {
+            .alert(progressManager.loc("Delete all data?", "Radera all data?"), isPresented: $showingResetConfirmation) {
+                Button(progressManager.loc("Cancel", "Avbryt"), role: .cancel) {}
+                Button(progressManager.loc("Continue", "Fortsätt"), role: .destructive) {
                     showingResetFinalConfirmation = true
                 }
             } message: {
-                Text("Detta kommer att nollställa alla dina poäng, lektioner och stjärnmarkerade ord. Är du säker?")
+                Text(progressManager.loc("This will reset all your scores, lessons, and reviews. Are you sure?", "Detta kommer att nollställa alla dina poäng, lektioner och stjärnmarkerade ord. Är du säker?"))
             }
-            .alert("ÄR DU HELT SÄKER?", isPresented: $showingResetFinalConfirmation) {
-                Button("Avbryt", role: .cancel) {}
-                Button("JA, RADERA ALLT", role: .destructive) {
+            .alert(progressManager.loc("ARE YOU ABSOLUTELY SURE?", "ÄR DU HELT SÄKER?"), isPresented: $showingResetFinalConfirmation) {
+                Button(progressManager.loc("Cancel", "Avbryt"), role: .cancel) {}
+                Button(progressManager.loc("YES, DELETE EVERYTHING", "JA, RADERA ALLT"), role: .destructive) {
                     resetAllAppData()
                 }
             } message: {
-                Text("Detta val går inte att ångra. All din inlärningshistorik försvinner permanent.")
+                Text(progressManager.loc("This action cannot be undone. All learning history will be permanently lost.", "Detta val går inte att ångra. All din inlärningshistorik försvinner permanent."))
             }
             .onAppear {
                 ttsRateSlider = Double(progressManager.progress.ttsRate)
@@ -94,11 +94,11 @@ public struct ProfileView: View {
                 .shadow(radius: 5)
             
             VStack(spacing: 4) {
-                Text("Svea Elev")
+                Text(progressManager.loc("Svea Student", "Svea Elev"))
                     .font(.sfRounded(size: 24, weight: .bold))
                     .foregroundColor(.textPrimary)
                 
-                Text("Nivå \(progressManager.currentLevel) Språkforskare")
+                Text(progressManager.loc("Level \(progressManager.currentLevel) Linguist", "Nivå \(progressManager.currentLevel) Språkforskare"))
                     .font(.sfRounded(size: 14, weight: .semibold))
                     .foregroundColor(.textSecondary)
             }
@@ -107,7 +107,7 @@ public struct ProfileView: View {
             let xpInCurrentLevel = progressManager.progress.xp % 100
             VStack(alignment: .leading, spacing: 6) {
                 HStack {
-                    Text("\(xpInCurrentLevel) / 100 XP för nästa nivå")
+                    Text(progressManager.loc("\(xpInCurrentLevel) / 100 XP for next level", "\(xpInCurrentLevel) / 100 XP för nästa nivå"))
                         .font(.sfRounded(size: 12, weight: .bold))
                         .foregroundColor(.textSecondary)
                     Spacer()
@@ -140,17 +140,17 @@ public struct ProfileView: View {
         
         return LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
             // Stat 1: XP
-            statCard(title: "TOTALT XP", value: "\(progressManager.progress.xp)", icon: "bolt.fill", color: .primaryGold)
+            statCard(title: progressManager.loc("TOTAL XP", "TOTALT XP"), value: "\(progressManager.progress.xp)", icon: "bolt.fill", color: .primaryGold)
             
             // Stat 2: Streak
-            statCard(title: "AKTIV STREAK", value: "\(progressManager.progress.streak) d", icon: "flame.fill", color: .streakFlame)
+            statCard(title: progressManager.loc("ACTIVE STREAK", "AKTIV STREAK"), value: "\(progressManager.progress.streak) \(progressManager.loc("d", "d"))", icon: "flame.fill", color: .streakFlame)
             
             // Stat 3: Mastered Words
             let mastered = srsScheduler.items.values.filter { $0.stage == 5 }.count
-            statCard(title: "MÄSTRADE ORD", value: "\(mastered)/\(itemsCount)", icon: "checkmark.seal.fill", color: .appSuccess)
+            statCard(title: progressManager.loc("MASTERED WORDS", "MÄSTRADE ORD"), value: "\(mastered)/\(itemsCount)", icon: "checkmark.seal.fill", color: .appSuccess)
             
             // Stat 4: Starred Words
-            statCard(title: "SPARADE ORD", value: "\(progressManager.progress.starredWords.count)", icon: "star.fill", color: .accentSMS)
+            statCard(title: progressManager.loc("SAVED WORDS", "SPARADE ORD"), value: "\(progressManager.progress.starredWords.count)", icon: "star.fill", color: .accentSMS)
         }
     }
     
@@ -180,13 +180,35 @@ public struct ProfileView: View {
     // MARK: - Settings Section
     private func settingsSection() -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("INSTÄLLNINGAR (SETTINGS)")
+            Text(progressManager.loc("SETTINGS", "INSTÄLLNINGAR"))
                 .font(.sfRounded(size: 12, weight: .bold))
                 .foregroundColor(.textMuted)
                 .tracking(1.5)
             
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Talhastighet (Speech Speed)")
+            VStack(alignment: .leading, spacing: 16) {
+                // UI Language Toggle
+                Toggle(isOn: Binding(
+                    get: { progressManager.progress.isEnglishUI ?? true },
+                    set: {
+                        progressManager.progress.isEnglishUI = $0
+                        progressManager.save()
+                    }
+                )) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(progressManager.loc("English User Interface", "Engelskt gränssnitt"))
+                            .font(.sfRounded(size: 14, weight: .bold))
+                            .foregroundColor(.textSecondary)
+                        Text(progressManager.loc("Menus, settings, and instructions will display in English", "Menyer, inställningar och instruktioner visas på engelska"))
+                            .font(.sfStandard(size: 11))
+                            .foregroundColor(.textMuted)
+                    }
+                }
+                .tint(.primaryBlue)
+                
+                Divider()
+                    .background(Color.appSurfaceElevated)
+                
+                Text(progressManager.loc("Speech Speed", "Talhastighet"))
                     .font(.sfRounded(size: 14, weight: .bold))
                     .foregroundColor(.textSecondary)
                 
@@ -206,7 +228,7 @@ public struct ProfileView: View {
                         .foregroundColor(.textMuted)
                 }
                 
-                Text(String(format: "Nuvarande hastighet: %.0f%%", ttsRateSlider * 200))
+                Text(String(format: progressManager.loc("Current speed: %.0f%%", "Nuvarande hastighet: %.0f%%"), ttsRateSlider * 200))
                     .font(.sfRounded(size: 12, weight: .semibold))
                     .foregroundColor(.textMuted)
             }
@@ -225,7 +247,7 @@ public struct ProfileView: View {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.appError)
-                    Text("Nollställ all appdata")
+                    Text(progressManager.loc("Reset all app data", "Nollställ all appdata"))
                         .font(.sfRounded(size: 15, weight: .bold))
                         .foregroundColor(.appError)
                     Spacer()

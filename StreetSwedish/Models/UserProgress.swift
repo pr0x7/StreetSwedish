@@ -94,6 +94,7 @@ public struct UserProgress: Codable, Hashable {
     public var vulgarsHidden: Bool
     public var ttsRate: Float                  // Rate parameter for AVSpeech (default ~0.5)
     public var autoAdvanceDelay: Double         // Auto-advance delay for correct answers (e.g. 0.8)
+    public var isEnglishUI: Bool?               // Language of the user interface (defaults to true/English)
     
     // Maps
     public var categoryProgressMap: [String: Double]    // categoryID: completionPercentage (0.0 to 1.0)
@@ -118,6 +119,7 @@ public struct UserProgress: Codable, Hashable {
         vulgarsHidden: Bool = false,
         ttsRate: Float = 0.5,
         autoAdvanceDelay: Double = 0.8,
+        isEnglishUI: Bool? = true,
         categoryProgressMap: [String: Double] = [:],
         moduleProgressMap: [String: ModuleProgress] = [:]
     ) {
@@ -139,6 +141,7 @@ public struct UserProgress: Codable, Hashable {
         self.vulgarsHidden = vulgarsHidden
         self.ttsRate = ttsRate
         self.autoAdvanceDelay = autoAdvanceDelay
+        self.isEnglishUI = isEnglishUI
         self.categoryProgressMap = categoryProgressMap
         self.moduleProgressMap = moduleProgressMap
     }

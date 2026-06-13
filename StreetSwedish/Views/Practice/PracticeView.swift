@@ -26,7 +26,7 @@ public struct PracticeView: View {
                 dashboardView()
             }
         }
-        .navigationTitle("Öva (Practice)")
+        .navigationTitle(progressManager.loc("Practice", "Öva"))
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -50,11 +50,11 @@ public struct PracticeView: View {
                         )
                     
                     VStack(spacing: 6) {
-                        Text(dueCount > 0 ? "\(dueCount) ord att repetera" : "Allt är repeterat!")
+                        Text(dueCount > 0 ? progressManager.loc("\(dueCount) words to review", "\(dueCount) ord att repetera") : progressManager.loc("Everything is reviewed!", "Allt är repeterat!"))
                             .font(.sfRounded(size: 22, weight: .bold))
                             .foregroundColor(.textPrimary)
                         
-                        Text(dueCount > 0 ? "Din hjärna behöver fräscha upp dessa ord enligt SM-2 schemat." : "Bra jobbat! Kom tillbaka imorgon för nästa SRS-runda.")
+                        Text(dueCount > 0 ? progressManager.loc("Your brain needs to refresh these words according to the SM-2 schedule.", "Din hjärna behöver fräscha upp dessa ord enligt SM-2 schemat.") : progressManager.loc("Good job! Come back tomorrow for the next SRS round.", "Bra jobbat! Kom tillbaka imorgon för nästa SRS-runda."))
                             .font(.sfStandard(size: 14))
                             .foregroundColor(.textSecondary)
                             .multilineTextAlignment(.center)
@@ -64,7 +64,7 @@ public struct PracticeView: View {
                         Button(action: {
                             startReviews()
                         }) {
-                            Text("Börja repetera")
+                            Text(progressManager.loc("Start reviewing", "Börja repetera"))
                                 .font(.sfRounded(size: 16, weight: .bold))
                                 .foregroundColor(.appBackground)
                                 .frame(maxWidth: .infinity)
@@ -75,7 +75,7 @@ public struct PracticeView: View {
                     } else if unseenCount > 0 {
                         // Encourage learning new words
                         NavigationLink(destination: CoursesView()) {
-                            Text("Lär dig nya ord")
+                            Text(progressManager.loc("Learn new words", "Lär dig nya ord"))
                                 .font(.sfRounded(size: 16, weight: .bold))
                                 .foregroundColor(.appBackground)
                                 .frame(maxWidth: .infinity)
@@ -98,10 +98,10 @@ public struct PracticeView: View {
                             .foregroundColor(.primaryBlue)
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Ordlista & Ordbok")
+                            Text(progressManager.loc("Dictionary & Word List", "Ordlista & Ordbok"))
                                 .font(.sfRounded(size: 16, weight: .bold))
                                 .foregroundColor(.textPrimary)
-                            Text("Sök, stjärnmarkera och återställ framsteg för alla \(allIDs.count) ord.")
+                            Text(progressManager.loc("Search, star, and track progress for all \(allIDs.count) words.", "Sök, stjärnmarkera och återställ framsteg för alla \(allIDs.count) ord."))
                                 .font(.sfStandard(size: 12))
                                 .foregroundColor(.textSecondary)
                         }
@@ -182,7 +182,7 @@ public struct PracticeView: View {
                             .background(Color.textMuted.opacity(0.3))
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("BETYDELSE")
+                            Text(progressManager.loc("MEANING", "BETYDELSE"))
                                 .font(.sfRounded(size: 10, weight: .bold))
                                 .foregroundColor(.textMuted)
                                 .tracking(1.0)
@@ -194,7 +194,7 @@ public struct PracticeView: View {
                         
                         if let example = item.exampleSentences.first {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("EXEMPELMENING")
+                                Text(progressManager.loc("EXAMPLE SENTENCE", "EXEMPELMENING"))
                                     .font(.sfRounded(size: 10, weight: .bold))
                                     .foregroundColor(.textMuted)
                                     .tracking(1.0)
@@ -243,7 +243,7 @@ public struct PracticeView: View {
                         
                         Spacer()
                         
-                        Text("Klicka för att se svar")
+                        Text(progressManager.loc("Tap to flip card", "Klicka för att se svar"))
                             .font(.sfRounded(size: 12, weight: .semibold))
                             .foregroundColor(.textMuted)
                     }
@@ -268,7 +268,7 @@ public struct PracticeView: View {
                     Button(action: {
                         flipCard()
                     }) {
-                        Text("Visa svar")
+                        Text(progressManager.loc("Show Answer", "Visa svar"))
                             .font(.sfRounded(size: 16, weight: .bold))
                             .foregroundColor(.appBackground)
                             .frame(maxWidth: .infinity)
@@ -283,7 +283,7 @@ public struct PracticeView: View {
                         Button(action: {
                             recordReview(itemID: item.id, isCorrect: false)
                         }) {
-                            Text("Misslyckades")
+                            Text(progressManager.loc("Forgot", "Misslyckades"))
                                 .font(.sfRounded(size: 16, weight: .bold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
@@ -296,7 +296,7 @@ public struct PracticeView: View {
                         Button(action: {
                             recordReview(itemID: item.id, isCorrect: true)
                         }) {
-                            Text("Klarade")
+                            Text(progressManager.loc("Remembered", "Klarade"))
                                 .font(.sfRounded(size: 16, weight: .bold))
                                 .foregroundColor(.appBackground)
                                 .frame(maxWidth: .infinity)
@@ -321,11 +321,11 @@ public struct PracticeView: View {
                 .foregroundColor(.appSuccess)
                 .shadow(radius: 10)
             
-            Text("Repetition klar!")
+            Text(progressManager.loc("Review Complete!", "Repetition klar!"))
                 .font(.sfRounded(size: 28, weight: .bold))
                 .foregroundColor(.textPrimary)
             
-            Text("Du har repeterat \(reviewQueue.count) ord. Dina framsteg har sparats i ditt lokala SM-2 register.")
+            Text(progressManager.loc("You have reviewed \(reviewQueue.count) words. Your progress has been updated in your local SM-2 database.", "Du har repeterat \(reviewQueue.count) ord. Dina framsteg har sparats i ditt lokala SM-2 register."))
                 .font(.sfStandard(size: 16))
                 .foregroundColor(.textSecondary)
                 .multilineTextAlignment(.center)
@@ -338,7 +338,7 @@ public struct PracticeView: View {
                     isReviewActive = false
                 }
             }) {
-                Text("Gå tillbaka")
+                Text(progressManager.loc("Go Back", "Gå tillbaka"))
                     .font(.sfRounded(size: 16, weight: .bold))
                     .foregroundColor(.appBackground)
                     .frame(maxWidth: .infinity)

@@ -54,6 +54,11 @@ public final class ProgressManager: ObservableObject {
         save()
     }
     
+    // MARK: - Localization
+    public func loc(_ en: String, _ sv: String) -> String {
+        return (progress.isEnglishUI ?? true) ? en : sv
+    }
+    
     // MARK: - XP & Rewards
     public func addXP(_ amount: Int) {
         progress.xp += amount

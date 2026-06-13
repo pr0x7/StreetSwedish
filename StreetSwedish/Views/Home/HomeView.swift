@@ -62,7 +62,7 @@ public struct HomeView: View {
                     .font(.sfRounded(size: 18, weight: .bold))
                     .foregroundColor(.textPrimary)
                 
-                Text("dagar")
+                Text(progressManager.loc("days", "dagar"))
                     .font(.sfRounded(size: 13, weight: .semibold))
                     .foregroundColor(.textSecondary)
             }
@@ -104,11 +104,11 @@ public struct HomeView: View {
     // MARK: - Greeting
     private func greetingSection() -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Tja! Redo att lära?")
+            Text(progressManager.loc("Hey! Ready to learn?", "Tja! Redo att lära?"))
                 .font(.sfRounded(size: 28, weight: .bold))
                 .foregroundColor(.textPrimary)
             
-            Text("Nivå \(progressManager.currentLevel) • \(progressManager.progress.xp) XP totalt")
+            Text(progressManager.loc("Level \(progressManager.currentLevel) • \(progressManager.progress.xp) XP total", "Nivå \(progressManager.currentLevel) • \(progressManager.progress.xp) XP totalt"))
                 .font(.sfRounded(size: 14, weight: .semibold))
                 .foregroundColor(.textSecondary)
         }
@@ -121,7 +121,7 @@ public struct HomeView: View {
         return VStack(alignment: .leading, spacing: 18) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("FORTSÄTT DÄR DU SLUTADE")
+                    Text(progressManager.loc("CONTINUE WHERE YOU LEFT OFF", "FORTSÄTT DÄR DU SLUTADE"))
                         .font(.sfRounded(size: 11, weight: .bold))
                         .foregroundColor(.textMuted)
                         .tracking(1.5)
@@ -151,7 +151,7 @@ public struct HomeView: View {
                 }
             }
             
-            Text("Lär dig typiskt kontors-svenska och agility-slang för att överleva fikan på IT-avdelningen.")
+            Text(progressManager.loc("Learn typical office Swedish and agile slang to survive the fika at the IT department.", "Lär dig typiskt kontors-svenska och agility-slang för att överleva fikan på IT-avdelningen."))
                 .font(.sfStandard(size: 15))
                 .foregroundColor(.textPrimary)
                 .lineSpacing(4)
@@ -161,7 +161,7 @@ public struct HomeView: View {
                 showingLesson = nextLesson
             }) {
                 HStack {
-                    Text("Starta nästa lektion")
+                    Text(progressManager.loc("Start next lesson", "Starta nästa lektion"))
                         .font(.sfRounded(size: 16, weight: .bold))
                     Spacer()
                     Image(systemName: "play.fill")
@@ -192,7 +192,7 @@ public struct HomeView: View {
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundColor(.primaryBlue)
-                    Text("Dagens ord (Word of the Day)")
+                    Text(progressManager.loc("Word of the Day", "Dagens ord (Word of the Day)"))
                         .font(.sfRounded(size: 14, weight: .bold))
                         .foregroundColor(.textSecondary)
                     Spacer()
@@ -229,7 +229,7 @@ public struct HomeView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("BETYDELSE")
+                        Text(progressManager.loc("MEANING", "BETYDELSE"))
                             .font(.sfRounded(size: 10, weight: .bold))
                             .foregroundColor(.textMuted)
                             .tracking(1.0)
@@ -240,7 +240,7 @@ public struct HomeView: View {
                     
                     if let example = word.exampleSentences.first {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("EXEMPELMENING")
+                            Text(progressManager.loc("EXAMPLE SENTENCE", "EXEMPELMENING"))
                                 .font(.sfRounded(size: 10, weight: .bold))
                                 .foregroundColor(.textMuted)
                                 .tracking(1.0)
@@ -286,7 +286,7 @@ public struct HomeView: View {
                         Text("\(due)")
                             .font(.sfRounded(size: 20, weight: .bold))
                             .foregroundColor(.textPrimary)
-                        Text("Att repetera")
+                        Text(progressManager.loc("To Review", "Att repetera"))
                             .font(.sfRounded(size: 12, weight: .semibold))
                             .foregroundColor(.textSecondary)
                     }
@@ -313,7 +313,7 @@ public struct HomeView: View {
                         Text("\(progressManager.progress.starredWords.count)")
                             .font(.sfRounded(size: 20, weight: .bold))
                             .foregroundColor(.textPrimary)
-                        Text("Sparade ord")
+                        Text(progressManager.loc("Saved Words", "Sparade ord"))
                             .font(.sfRounded(size: 12, weight: .semibold))
                             .foregroundColor(.textSecondary)
                     }

@@ -62,7 +62,7 @@ public struct CoursesView: View {
                     }
                 }
             }
-            .navigationTitle("Lär dig (Learn)")
+            .navigationTitle(progressManager.loc("Learn", "Lär dig"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: Binding(
                 get: { showingLesson != nil },
@@ -90,12 +90,12 @@ public struct CoursesView: View {
     private func categoryHeaderSelector() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                categoryTab(id: "work_tech", name: "Jobb & Tech", icon: "laptopcomputer", color: .accentWork)
-                categoryTab(id: "street", name: "Gatans Språk", icon: "figure.walk", color: .accentStreet)
-                categoryTab(id: "sms", name: "SMS", icon: "bubble.left.and.bubble.right.fill", color: .accentSMS)
-                categoryTab(id: "social", name: "Socialt / AW", icon: "wineglass.fill", color: .accentSocial)
-                categoryTab(id: "dating", name: "Dating", icon: "heart.fill", color: .accentDating)
-                categoryTab(id: "swears", name: "Svordomar", icon: "exclamationmark.bubble.fill", color: .accentSwearing)
+                categoryTab(id: "work_tech", name: progressManager.loc("Work & Tech", "Jobb & Tech"), icon: "laptopcomputer", color: .accentWork)
+                categoryTab(id: "street", name: progressManager.loc("Street Slang", "Gatans Språk"), icon: "figure.walk", color: .accentStreet)
+                categoryTab(id: "sms", name: progressManager.loc("Text Slang", "SMS"), icon: "bubble.left.and.bubble.right.fill", color: .accentSMS)
+                categoryTab(id: "social", name: progressManager.loc("Social / AW", "Socialt / AW"), icon: "wineglass.fill", color: .accentSocial)
+                categoryTab(id: "dating", name: progressManager.loc("Dating", "Dating"), icon: "heart.fill", color: .accentDating)
+                categoryTab(id: "swears", name: progressManager.loc("Swears", "Svordomar"), icon: "exclamationmark.bubble.fill", color: .accentSwearing)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
@@ -132,7 +132,7 @@ public struct CoursesView: View {
         return Group {
             if let mod = module {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("KURSMODUL")
+                    Text(progressManager.loc("COURSE MODULE", "KURSMODUL"))
                         .font(.sfRounded(size: 11, weight: .bold))
                         .foregroundColor(.primaryGold)
                         .tracking(2.0)
@@ -244,7 +244,7 @@ public struct CoursesView: View {
                         .foregroundColor(status == .locked ? .textMuted : .appBackground)
                 }
                 
-                Text("BOSSNIVÅ (BOSS LEVEL)")
+                Text(progressManager.loc("BOSS LEVEL", "BOSSNIVÅ"))
                     .font(.sfRounded(size: 12, weight: .black))
                     .foregroundColor(status == .locked ? .textMuted : .primaryGold)
                     .tracking(1.0)
@@ -260,11 +260,11 @@ public struct CoursesView: View {
                 .font(.system(size: 44))
                 .foregroundColor(.textMuted)
             
-            Text("Nya lektioner på väg!")
+            Text(progressManager.loc("New lessons on the way!", "Nya lektioner på väg!"))
                 .font(.sfRounded(size: 18, weight: .bold))
                 .foregroundColor(.textSecondary)
             
-            Text("Vi jobbar på slang för barer, svordomar och sms. Håll ut!")
+            Text(progressManager.loc("We are working on slang for bars, swearing, and text messaging. Stay tuned!", "Vi jobbar på slang för barer, svordomar och sms. Håll ut!"))
                 .font(.sfStandard(size: 14))
                 .foregroundColor(.textMuted)
                 .multilineTextAlignment(.center)

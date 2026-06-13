@@ -12,25 +12,25 @@ public struct MainTabView: View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("Hem", systemImage: "house.fill")
+                    Label(progressManager.loc("Home", "Hem"), systemImage: "house.fill")
                 }
                 .tag(0)
             
             CoursesView()
                 .tabItem {
-                    Label("Lär dig", systemImage: "book.fill")
+                    Label(progressManager.loc("Learn", "Lär dig"), systemImage: "book.fill")
                 }
                 .tag(1)
             
             PracticeView()
                 .tabItem {
-                    Label("Öva", systemImage: "doc.text.magnifyingglass")
+                    Label(progressManager.loc("Practice", "Öva"), systemImage: "doc.text.magnifyingglass")
                 }
                 .tag(2)
             
             ProfileView()
                 .tabItem {
-                    Label("Profil", systemImage: "person.fill")
+                    Label(progressManager.loc("Profile", "Profil"), systemImage: "person.fill")
                 }
                 .tag(3)
         }
