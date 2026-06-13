@@ -40,6 +40,12 @@ jobs:
             mkdir -p Payload/StreetSwedish.app
             cp build/Build/Products/Release-iphoneos/StreetSwedish Payload/StreetSwedish.app/
             
+            # Copy resource bundle into the app wrapper so SPM resources can load
+            if [ -d "build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle" ]; then
+              echo "Copying StreetSwedish_StreetSwedish.bundle to app bundle..."
+              cp -r build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle Payload/StreetSwedish.app/
+            fi
+            
             # Create a basic Info.plist for the fallback
             echo '<?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -79,14 +85,17 @@ jobs:
           FINAL_APP=$(find Payload -name "*.app" -type d -print -quit)
           echo "Targeting app bundle for icon injection: $FINAL_APP"
           
-          # Compile the asset catalog containing the AppIcon into the bundle
+          # Compile the asset catalog containing the AppIcon into the bundle using actool
           echo "Compiling asset catalog with actool..."
           xcrun actool --compile "$FINAL_APP" \
             --platform iphoneos \
             --minimum-deployment-target 16.0 \
+            --target-device iphone \
+            --target-device ipad \
             --app-icon AppIcon \
             --output-format xml1 \
-            StreetSwedish/Assets.xcassets
+            "$(pwd)/StreetSwedish/Assets.xcassets" > actool.log 2>&1 || { cat actool.log; exit 1; }
+          cat actool.log
             
           # Inject CFBundleIcons into Info.plist
           echo "Injecting CFBundleIcons plist configuration..."
@@ -99,7 +108,7 @@ jobs:
           
           # Print the files in the app bundle to verify compiled icon assets
           echo "Files inside the compiled app bundle:"
-          find "$FINAL_APP" -maxdepth 2
+          find "$FINAL_APP" -maxdepth 3
           
           zip -r StreetSwedish.ipa Payload
 
