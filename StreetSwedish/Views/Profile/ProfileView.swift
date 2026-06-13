@@ -75,7 +75,7 @@ public struct ProfileView: View {
                 Text("Detta val går inte att ångra. All din inlärningshistorik försvinner permanent.")
             }
             .onAppear {
-                ttsRateSlider = progressManager.progress.ttsRate
+                ttsRateSlider = Double(progressManager.progress.ttsRate)
             }
         }
     }
@@ -196,7 +196,8 @@ public struct ProfileView: View {
                     
                     Slider(value: $ttsRateSlider, in: 0.3...0.7) { editing in
                         if !editing {
-                            progressManager.setTTSRate(ttsRateSlider)
+                            progressManager.progress.ttsRate = Float(ttsRateSlider)
+                            progressManager.save()
                         }
                     }
                     .tint(.primaryBlue)
@@ -242,8 +243,10 @@ public struct ProfileView: View {
     
     // MARK: - Clear data helper
     private func resetAllAppData() {
-        progressManager.resetProgress()
-        srsScheduler.resetAllProgress()
+        progressManager.progress = UserProgress()
+        progressManager.save()
+        srsScheduler.items = [:]
+        srsScheduler.saveItems()
         ttsRateSlider = 0.5
     }
 }

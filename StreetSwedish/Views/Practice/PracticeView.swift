@@ -308,9 +308,7 @@ public struct PracticeView: View {
                     .padding(.horizontal, 24)
                 }
             }
-            .padding(.bottom, 24)
         })
-    }
     }
     
     // MARK: - 3. Review Completed View

@@ -435,14 +435,14 @@ public struct LessonData {
                 swedish: "Vi skiter i den buggen så länge, den är inte prio.",
                 english: "We'll ignore that bug for now, it's not a priority.",
                 contextNote: "Slightly vulgar-lite but widely used colloquially.",
-                registerLabel: .slang,
-                usageWarning: "Informal. Do not use in formal presentations to clients, but fine among developers."
+                registerLabel: .slang
             )
         ],
         soundHook: "Skita sounds like 'sheet-ah' (meaning 'to poop').",
         visualHook: "Imagine a programmer literally throwing old papers over their shoulder with a poop emoji drawn on them.",
         cultureHook: "Highly expressive. It shows active decision-making to discard or disregard something useless.",
         registerLabel: .slang,
+        usageWarning: "Informal. Do not use in formal presentations to clients, but fine among developers.",
         relatedItemIDs: ["vocab_prio"]
     )
     

@@ -145,7 +145,7 @@ public struct ProgressMapView: View {
                         .foregroundColor(.textMuted)
                         .padding(.top, 4)
                     
-                    Text(srsItem.stage == 5 ? "Aldrig (Mästrat)" : (srsItem.stage == 0 ? "Ej schemalagt" : formatDueDate(srsItem.dueDate)))
+                    Text(srsItem.stage == 5 ? "Aldrig (Mästrat)" : (srsItem.stage == 0 ? "Ej schemalagt" : formatDueDate(srsItem.nextReviewDate)))
                         .font(.sfStandard(size: 14))
                         .foregroundColor(.textSecondary)
                 }
