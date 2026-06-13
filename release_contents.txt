@@ -1,13 +1,4 @@
 build/Build/Products/Release-iphoneos
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/Project
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftmodule
-build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.abi.json
-build/Build/Products/Release-iphoneos/StreetSwedish
+build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle
+build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle/Info.plist
 build/Build/Products/Release-iphoneos/PackageFrameworks
-build/Build/Products/Release-iphoneos/StreetSwedish.dSYM
-build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents
-build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents/Resources
-build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents/Info.plist
