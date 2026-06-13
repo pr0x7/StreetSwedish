@@ -22,17 +22,23 @@ public struct MainTabView: View {
                 }
                 .tag(1)
             
+            GrammarView()
+                .tabItem {
+                    Label(progressManager.loc("Grammar", "Grammatik"), systemImage: "text.alignleft")
+                }
+                .tag(2)
+            
             PracticeView()
                 .tabItem {
                     Label(progressManager.loc("Practice", "Öva"), systemImage: "doc.text.magnifyingglass")
                 }
-                .tag(2)
+                .tag(3)
             
             ProfileView()
                 .tabItem {
                     Label(progressManager.loc("Profile", "Profil"), systemImage: "person.fill")
                 }
-                .tag(3)
+                .tag(4)
         }
         .tint(.primaryGold)
         .onAppear {

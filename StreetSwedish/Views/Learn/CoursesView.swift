@@ -7,6 +7,7 @@ public struct CoursesView: View {
     @State private var selectedCategory = "work_tech"
     @State private var showingLesson: Lesson? = nil
     @State private var showingBossLevel: BossLevel? = nil
+    @State private var selectedLessonForDetails: Lesson? = nil
     
     // Breathing scale state for active node
     @State private var breathScale: CGFloat = 1.0
@@ -79,6 +80,23 @@ public struct CoursesView: View {
                 if let boss = showingBossLevel {
                     BossLevelView(bossLevel: boss)
                 }
+            }
+            .sheet(item: $selectedLessonForDetails) { lesson in
+                let status = getLessonStatus(lesson)
+                LessonDetailSheet(
+                    lesson: lesson,
+                    status: status,
+                    onStart: { selected in
+                        showingLesson = selected
+                    },
+                    onResetAndStart: { selected in
+                        progressManager.progress.lessonResumeActs?[selected.id] = nil
+                        progressManager.progress.lessonResumeStepIndices?[selected.id] = nil
+                        progressManager.save()
+                        showingLesson = selected
+                    }
+                )
+                .environmentObject(progressManager)
             }
             .onAppear {
                 startBreathingAnimation()
@@ -187,7 +205,7 @@ public struct CoursesView: View {
     private func lessonNode(lesson: Lesson, status: NodeStatus) -> some View {
         Button(action: {
             if status != .locked {
-                showingLesson = lesson
+                selectedLessonForDetails = lesson
             }
         }) {
             VStack(spacing: 8) {
@@ -215,6 +233,18 @@ public struct CoursesView: View {
                                 .font(.title2)
                                 .foregroundColor(.white)
                         }
+                    }
+                    
+                    // Floating Resume badge if has in-progress state
+                    if progressManager.progress.lessonResumeActs?[lesson.id] != nil {
+                        Text(progressManager.loc("RESUME", "FORTSÄTT"))
+                            .font(.sfRounded(size: 8, weight: .black))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 3)
+                            .background(Color.accentStreet)
+                            .cornerRadius(6)
+                            .offset(y: -44)
                     }
                 }
                 
@@ -363,5 +393,134 @@ public struct CoursesView: View {
             }
         }
         return LessonData.allLessons[0]
+    }
+}
+
+// MARK: - Lesson Detail sheet (Bottom sheet)
+struct LessonDetailSheet: View {
+    let lesson: Lesson
+    let status: CoursesView.NodeStatus
+    @EnvironmentObject var progressManager: ProgressManager
+    @Environment(\.dismiss) var dismiss
+    var onStart: (Lesson) -> Void
+    var onResetAndStart: (Lesson) -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.appBackground.ignoresSafeArea()
+            
+            VStack(spacing: 24) {
+                // Drag handle
+                Capsule()
+                    .fill(Color.textMuted.opacity(0.3))
+                    .frame(width: 40, height: 5)
+                    .padding(.top, 12)
+                
+                VStack(spacing: 8) {
+                    Text(lesson.title)
+                        .font(.sfRounded(size: 24, weight: .black))
+                        .foregroundColor(.textPrimary)
+                    
+                    Text(progressManager.loc("Lesson Details", "Lektionsdetaljer"))
+                        .font(.sfRounded(size: 12, weight: .bold))
+                        .foregroundColor(.primaryGold)
+                        .tracking(1.5)
+                }
+                
+                // Words list
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(progressManager.loc("VOCABULARY TO LEARN", "ORD DU LÄR DIG"))
+                        .font(.sfRounded(size: 11, weight: .bold))
+                        .foregroundColor(.textSecondary)
+                        .tracking(1.0)
+                    
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack(spacing: 8) {
+                            ForEach(lesson.vocabItems, id: \.id) { item in
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(item.swedish)
+                                            .font(.sfRounded(size: 16, weight: .bold))
+                                            .foregroundColor(.primaryGold)
+                                        Text(item.english)
+                                            .font(.sfStandard(size: 13))
+                                            .foregroundColor(.textSecondary)
+                                    }
+                                    Spacer()
+                                    
+                                    // Sub-badge for register
+                                    Text(item.registerLabel.rawValue.capitalized)
+                                        .font(.sfRounded(size: 10, weight: .bold))
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color.appSurfaceElevated)
+                                        .foregroundColor(.textMuted)
+                                        .cornerRadius(8)
+                                }
+                                .padding(12)
+                                .background(Color.appSurface)
+                                .cornerRadius(12)
+                            }
+                        }
+                    }
+                    .frame(maxHeight: 200)
+                }
+                .padding(.horizontal, 20)
+                
+                // Resume info / Status
+                let hasResumeState = progressManager.progress.lessonResumeActs?[lesson.id] != nil
+                
+                VStack(spacing: 12) {
+                    if hasResumeState {
+                        Text(progressManager.loc("You have saved progress on this lesson.", "Du har sparade framsteg i denna lektion."))
+                            .font(.sfStandard(size: 13))
+                            .foregroundColor(.accentStreet)
+                        
+                        Button(action: {
+                            dismiss()
+                            onStart(lesson)
+                        }) {
+                            HStack {
+                                Image(systemName: "arrow.clockwise.circle.fill")
+                                Text(progressManager.loc("Resume Lesson", "Fortsätt lektion"))
+                            }
+                            .font(.sfRounded(size: 16, weight: .bold))
+                            .foregroundColor(.appBackground)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.accentStreet)
+                            .cornerRadius(16)
+                        }
+                        
+                        Button(action: {
+                            dismiss()
+                            onResetAndStart(lesson)
+                        }) {
+                            Text(progressManager.loc("Restart from Beginning", "Starta om från början"))
+                                .font(.sfRounded(size: 14, weight: .bold))
+                                .foregroundColor(.textMuted)
+                        }
+                    } else {
+                        Button(action: {
+                            dismiss()
+                            onStart(lesson)
+                        }) {
+                            HStack {
+                                Image(systemName: "play.fill")
+                                Text(progressManager.loc("Start Lesson", "Starta lektion"))
+                            }
+                            .font(.sfRounded(size: 16, weight: .bold))
+                            .foregroundColor(.appBackground)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.primaryGold)
+                            .cornerRadius(16)
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 24)
+            }
+        }
     }
 }

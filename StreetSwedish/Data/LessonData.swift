@@ -1255,6 +1255,243 @@ public struct LessonData {
             dialogues: [],
             exercises: lesson3Exercises,
             characterIDs: ["maja", "erik", "karin"]
+        ),
+        
+        // --- STREET MODULE LESSONS ---
+        Lesson(
+            id: "street_basics",
+            moduleID: "gatanssprak",
+            title: "Gatans Grundläggande",
+            estimatedMinutes: 10,
+            vocabItems: [bre, beckna, aina],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Street Swedish (Miljonsvenska) originated in the multicultural suburbs of Stockholm, Gothenburg, and Malmö. It mixes Swedish with Arabic, Turkish, and Balkan words.",
+                illustrationName: "street_suburb_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_st1_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'bre' mean?",
+                    correctAnswer: "brother / bro",
+                    options: ["bread", "brother / bro", "police", "money"]
+                ),
+                Exercise(
+                    id: "ex_st1_2",
+                    type: .fillBlank,
+                    prompt: "Akta dig, ______ kommer!",
+                    correctAnswer: "aina",
+                    options: ["bre", "guss", "aina", "tugg"]
+                )
+            ],
+            characterIDs: ["erik"]
+        ),
+        Lesson(
+            id: "street_attitude",
+            moduleID: "gatanssprak",
+            title: "Attityd & Vibe",
+            estimatedMinutes: 10,
+            vocabItems: [guss, keff, tugg],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Having a cool attitude and hanging out with friends ('tugga') is central to street culture. Saying something is 'keff' expresses strong disappointment.",
+                illustrationName: "attitude_vibe_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_st2_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'keff' mean?",
+                    correctAnswer: "bad / lame",
+                    options: ["good", "bad / lame", "police", "food"]
+                )
+            ],
+            characterIDs: ["linh"]
+        ),
+        
+        // --- SMS MODULE LESSONS ---
+        Lesson(
+            id: "sms_basics",
+            moduleID: "sms_social",
+            title: "SMS Shorthand",
+            estimatedMinutes: 8,
+            vocabItems: [dd, vdg],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedes love to shorten words in texts. Shorthands like 'dd' and 'vdg' are used constantly in casual chats.",
+                illustrationName: "sms_chat_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sms1_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'vdg' mean?",
+                    correctAnswer: "what are you doing",
+                    options: ["where are you", "what are you doing", "who is that", "maybe"]
+                )
+            ],
+            characterIDs: ["maja"]
+        ),
+        Lesson(
+            id: "sms_reactions",
+            moduleID: "sms_social",
+            title: "Fast Reactions",
+            estimatedMinutes: 8,
+            vocabItems: [iaf, ksk, oxa],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Abbreviations like 'iaf' and 'ksk' help Swedes type fast when giving quick confirmations or expressing uncertainty.",
+                illustrationName: "sms_reactions_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sms2_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'ksk' mean?",
+                    correctAnswer: "maybe",
+                    options: ["kissekatt", "maybe", "anyway", "also"]
+                )
+            ],
+            characterIDs: ["erik"]
+        ),
+        
+        // --- SOCIAL MODULE LESSONS ---
+        Lesson(
+            id: "social_drinking",
+            moduleID: "socialt_bar",
+            title: "Toasting & Beers",
+            estimatedMinutes: 10,
+            vocabItems: [bira, skal, kroka],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Going out for a 'bira' is a staple of Swedish social life, especially during After Work (AW) sessions.",
+                illustrationName: "bar_toasting_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_soc1_1",
+                    type: .multipleChoice,
+                    prompt: "What is a 'bira'?",
+                    correctAnswer: "beer",
+                    options: ["wine", "beer", "soda", "coffee"]
+                )
+            ],
+            characterIDs: ["erik"]
+        ),
+        Lesson(
+            id: "social_vibe",
+            moduleID: "socialt_bar",
+            title: "Good Vibes",
+            estimatedMinutes: 10,
+            vocabItems: [chilla, taggad],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedes value a relaxed mood. Saying you want to 'chilla' is very common, as is being 'taggad' for an event.",
+                illustrationName: "social_vibe_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_soc2_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'taggad' mean?",
+                    correctAnswer: "hyped / pumped",
+                    options: ["tired", "hyped / pumped", "angry", "drunk"]
+                )
+            ],
+            characterIDs: ["linh"]
+        ),
+        
+        // --- DATING MODULE LESSONS ---
+        Lesson(
+            id: "dating_crush",
+            moduleID: "dating",
+            title: "Flirting & Crushes",
+            estimatedMinutes: 12,
+            vocabItems: [ragg, haffa],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Dating culture in Sweden is quite casual. 'Haffa' is street slang for catching/hooking up with someone you like.",
+                illustrationName: "dating_crush_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_dat1_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'haffa' mean?",
+                    correctAnswer: "to catch / hook up with",
+                    options: ["to run", "to catch / hook up with", "to reject", "to dump"]
+                )
+            ],
+            characterIDs: ["maja"]
+        ),
+        Lesson(
+            id: "dating_drama",
+            moduleID: "dating",
+            title: "Relationship Drama",
+            estimatedMinutes: 12,
+            vocabItems: [strula, dumpa],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedish relationships sometimes go through 'strul' (complications). Breaking up is colloquially called being 'dumpad'.",
+                illustrationName: "relationship_drama_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_dat2_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'dumpa' mean?",
+                    correctAnswer: "to dump",
+                    options: ["to marry", "to kiss", "to dump", "to hug"]
+                )
+            ],
+            characterIDs: ["linh"]
+        ),
+        
+        // --- SWEARS MODULE LESSONS ---
+        Lesson(
+            id: "swears_mild",
+            moduleID: "svordomar",
+            title: "Common Swears",
+            estimatedMinutes: 10,
+            vocabItems: [fan, javlar],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedish curse words are often religious in origin (devils, hell) rather than anatomical. They are used frequently for emphasis.",
+                illustrationName: "mild_swears_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sw1_1",
+                    type: .multipleChoice,
+                    prompt: "Which is the most common Swedish swear?",
+                    correctAnswer: "fan",
+                    options: ["fika", "fan", "sprint", "bre"]
+                )
+            ],
+            characterIDs: ["erik"]
+        ),
+        Lesson(
+            id: "swears_spicy",
+            moduleID: "svordomar",
+            title: "Expressing Frustration",
+            estimatedMinutes: 10,
+            vocabItems: [helvete],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Saying 'helvete' (hell) is a stronger way to express anger or frustration when things go wrong.",
+                illustrationName: "spicy_swears_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sw2_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'helvete' mean?",
+                    correctAnswer: "hell",
+                    options: ["heaven", "hell", "crap", "bro"]
+                )
+            ],
+            characterIDs: ["karin"]
         )
     ]
     
