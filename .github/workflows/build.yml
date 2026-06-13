@@ -12,6 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List Schemes
+        run: xcodebuild -list
+
       - name: Build App for iOS (Unsigned)
         run: |
           xcodebuild -scheme StreetSwedish \
