@@ -8,6 +8,7 @@ public struct CoursesView: View {
     @State private var showingLesson: Lesson? = nil
     @State private var showingBossLevel: BossLevel? = nil
     @State private var selectedLessonForDetails: Lesson? = nil
+    @State private var pendingLessonToStart: Lesson? = nil
     
     // Breathing scale state for active node
     @State private var breathScale: CGFloat = 1.0
@@ -81,25 +82,26 @@ public struct CoursesView: View {
                     BossLevelView(bossLevel: boss)
                 }
             }
-            .sheet(item: $selectedLessonForDetails) { lesson in
+            .sheet(item: $selectedLessonForDetails, onDismiss: {
+                if let lesson = pendingLessonToStart {
+                    pendingLessonToStart = nil
+                    showingLesson = lesson
+                }
+            }) { lesson in
                 let status = getLessonStatus(lesson)
                 LessonDetailSheet(
                     lesson: lesson,
                     status: status,
                     onStart: { selected in
+                        pendingLessonToStart = selected
                         selectedLessonForDetails = nil
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                            showingLesson = selected
-                        }
                     },
                     onResetAndStart: { selected in
-                        selectedLessonForDetails = nil
                         progressManager.progress.lessonResumeActs?[selected.id] = nil
                         progressManager.progress.lessonResumeStepIndices?[selected.id] = nil
                         progressManager.save()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                            showingLesson = selected
-                        }
+                        pendingLessonToStart = selected
+                        selectedLessonForDetails = nil
                     }
                 )
                 .environmentObject(progressManager)

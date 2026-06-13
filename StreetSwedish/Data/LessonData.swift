@@ -63,55 +63,55 @@ public struct LessonData {
             categoryID: "street",
             title: "Gatans Språk",
             subtitle: "Street Slang & Suburb Vibe",
-            lessonIDs: ["street_basics", "street_attitude"],
+            lessonIDs: ["street_basics", "street_attitude", "street_lifestyle"],
             bossLevelID: "boss_gatanssprak",
             elitePhraseIDs: ["elite_street_1"],
             unlockRequirement: nil,
-            wordCount: 6
+            wordCount: 13
         ),
         Module(
             id: "sms_social",
             categoryID: "sms",
             title: "SMS-Slang",
             subtitle: "Fast texts and abbreviations",
-            lessonIDs: ["sms_basics", "sms_reactions"],
+            lessonIDs: ["sms_basics", "sms_reactions", "sms_plans"],
             bossLevelID: "boss_sms_social",
             elitePhraseIDs: ["elite_sms_1"],
             unlockRequirement: nil,
-            wordCount: 5
+            wordCount: 11
         ),
         Module(
             id: "socialt_bar",
             categoryID: "social",
             title: "Socialt & AW",
             subtitle: "Bar talk and hanging out",
-            lessonIDs: ["social_drinking", "social_vibe"],
+            lessonIDs: ["social_drinking", "social_vibe", "social_food"],
             bossLevelID: "boss_socialt_bar",
             elitePhraseIDs: ["elite_social_1"],
             unlockRequirement: nil,
-            wordCount: 5
+            wordCount: 9
         ),
         Module(
             id: "dating",
             categoryID: "dating",
             title: "Dejting & Kärlek",
             subtitle: "Romance and flirting slang",
-            lessonIDs: ["dating_crush", "dating_drama"],
+            lessonIDs: ["dating_crush", "dating_drama", "dating_future"],
             bossLevelID: "boss_dating",
             elitePhraseIDs: ["elite_dating_1"],
             unlockRequirement: nil,
-            wordCount: 4
+            wordCount: 8
         ),
         Module(
             id: "svordomar",
             categoryID: "swears",
             title: "Svordomar",
             subtitle: "Swedish swearing and curse words",
-            lessonIDs: ["swears_mild", "swears_spicy"],
+            lessonIDs: ["swears_mild", "swears_spicy", "swears_insults"],
             bossLevelID: "boss_svordomar",
             elitePhraseIDs: ["elite_swears_1"],
             unlockRequirement: nil,
-            wordCount: 3
+            wordCount: 6
         )
     ]
     
@@ -1066,15 +1066,505 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
+    // --- ADDITIONAL STREET LESSON VOCAB ---
+    public static let para = VocabItem(
+        id: "vocab_para",
+        swedish: "para",
+        english: "money",
+        pronunciation: "pah-rah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag har inga para kvar.",
+                english: "I have no money left.",
+                contextNote: "Turkish origin slang for money.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'para' in parachute.",
+        visualHook: "Money falling down with tiny parachutes.",
+        cultureHook: "Very common in Swedish rap lyrics and youth conversations.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    public static let shurda = VocabItem(
+        id: "vocab_shurda",
+        swedish: "shurda",
+        english: "guy / dude",
+        pronunciation: "shoor-dah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vem är den där shurdan?",
+                english: "Who is that guy?",
+                contextNote: "Slang term for a man or boy.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'sure, duh!'.",
+        visualHook: "A guy shrugs and says 'sure, duh!'.",
+        cultureHook: "Suburban youth register.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    public static let ortens = VocabItem(
+        id: "vocab_ortens",
+        swedish: "ortens",
+        english: "of the hood / local style",
+        pronunciation: "or-tens",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han äter bara ortens kebab.",
+                english: "He only eats local hood-style kebab.",
+                contextNote: "From 'orten' (the suburb), used as an adjective.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'or tense' (tense situation).",
+        visualHook: "A nervous kebab skewer sweating.",
+        cultureHook: "Represents suburban culture and identity.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    public static let lax = VocabItem(
+        id: "vocab_lax",
+        swedish: "lax",
+        english: "thousand crowns (1000 kr)",
+        pronunciation: "lax",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jackan kostade fem lax.",
+                english: "The jacket cost five thousand crowns.",
+                contextNote: "Literal meaning 'salmon', slang for 1000 SEK.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds exactly like 'lax' (loose) or 'salmon' (lax in Swedish).",
+        visualHook: "A salmon swimming upstream with 1000-SEK bills.",
+        cultureHook: "Traditional Swedish slang that is still widely used today.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    public static let kanin = VocabItem(
+        id: "vocab_kanin",
+        swedish: "kanin",
+        english: "million crowns (1,000,000 kr)",
+        pronunciation: "kah-neen",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han tjänade en kanin på affären.",
+                english: "He earned a million from the deal.",
+                contextNote: "Literal meaning 'rabbit', slang for 1,000,000 SEK.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'cane in'.",
+        visualHook: "A rabbit wearing a gold crown holding a million SEK.",
+        cultureHook: "Suburban financial slang, often used in hip hop.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    public static let jalla = VocabItem(
+        id: "vocab_jalla",
+        swedish: "jalla",
+        english: "hurry up / come on",
+        pronunciation: "yal-lah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jalla, vi kommer för sent!",
+                english: "Hurry up, we will be late!",
+                contextNote: "Arabic origin, meaning hurry up.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'y'all'.",
+        visualHook: "A running snail with a jetpack.",
+        cultureHook: "Extremely well-known slang used even by non-slang speakers.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    public static let abo = VocabItem(
+        id: "vocab_abo",
+        swedish: "abo",
+        english: "wow / whoa",
+        pronunciation: "ah-boh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Abo, kolla på hans bil!",
+                english: "Wow, look at his car!",
+                contextNote: "Expression of surprise or shock.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'elbow'.",
+        visualHook: "An elbow flying into the air with surprise.",
+        cultureHook: "Suburban slang exclamation.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+
+    // --- ADDITIONAL SMS LESSON VOCAB ---
+    public static let cs = VocabItem(
+        id: "vocab_cs",
+        swedish: "cs",
+        english: "see you / see each other",
+        pronunciation: "seh-ess",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vi cs vid sju.",
+                english: "We'll see each other at seven.",
+                contextNote: "SMS shorthand for 'ses'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "Sounds like 'C-S' (Counter-Strike).",
+        visualHook: "Two letters waving goodbye.",
+        cultureHook: "Texting abbreviation.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    public static let vgd = VocabItem(
+        id: "vocab_vgd",
+        swedish: "vgd",
+        english: "what are you doing",
+        pronunciation: "veh-yeh-deh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Tja, vgd?",
+                english: "Hey, what are you doing?",
+                contextNote: "Shorthand for 'vad gör du?'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "V-G-D letters.",
+        visualHook: "A lazy dog texting from a couch.",
+        cultureHook: "Very common check-in text.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    public static let idg = VocabItem(
+        id: "vocab_idg",
+        swedish: "idg",
+        english: "today",
+        pronunciation: "ee-deh-yeh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Kan vi ses idg?",
+                english: "Can we meet today?",
+                contextNote: "SMS shorthand for 'idag'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "I-D-G letters.",
+        visualHook: "A calendar page with a big star on today.",
+        cultureHook: "Texting convenience.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    public static let imr = VocabItem(
+        id: "vocab_imr",
+        swedish: "imr",
+        english: "tomorrow",
+        pronunciation: "ee-em-arr",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vi tar det imr.",
+                english: "We will take it tomorrow.",
+                contextNote: "SMS shorthand for 'imorgon'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "I-M-R letters.",
+        visualHook: "Sun rising behind a clock.",
+        cultureHook: "Used for scheduling quickly.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    public static let dsm = VocabItem(
+        id: "vocab_dsm",
+        swedish: "dsm",
+        english: "likewise / same to you",
+        pronunciation: "deh-ess-em",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Ha en bra helg! - Tack, dsm!",
+                english: "Have a great weekend! - Thanks, likewise!",
+                contextNote: "SMS shorthand for 'detsamma'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "D-S-M letters.",
+        visualHook: "Two mirrors reflecting each other.",
+        cultureHook: "Standard polite response in texting.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    public static let ftg = VocabItem(
+        id: "vocab_ftg",
+        swedish: "ftg",
+        english: "company / corporate business",
+        pronunciation: "eff-teh-yeh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han jobbar på ett stort ftg.",
+                english: "He works at a big company.",
+                contextNote: "Shorthand for 'företag'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "F-T-G letters.",
+        visualHook: "A tall glass building with a suit inside.",
+        cultureHook: "Office/business shorthand in text.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+
+    // --- ADDITIONAL SOCIAL / AW LESSON VOCAB ---
+    public static let krubb = VocabItem(
+        id: "vocab_krubb",
+        swedish: "krubb",
+        english: "food / grub",
+        pronunciation: "kroob",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Nu är det dags för lite krubb.",
+                english: "Now it's time for some food.",
+                contextNote: "Slang for food, equivalent to 'grub'.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'crab'.",
+        visualHook: "A crab eating a giant hamburger.",
+        cultureHook: "Casual, relaxed word for food.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    public static let fyllekak = VocabItem(
+        id: "vocab_fyllekak",
+        swedish: "fyllekäk",
+        english: "drunk food",
+        pronunciation: "fyl-leh-shehk",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vi drar till Max för lite fyllekäk.",
+                english: "We are heading to Max (burger chain) for some drunk food.",
+                contextNote: "Compound word: 'fylla' (drunkenness) + 'käk' (food).",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'fill-a-cake'.",
+        visualHook: "A happy person holding a burger and a kebab at 3 AM.",
+        cultureHook: "A core rite of passage after a Swedish night out.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    public static let kaka = VocabItem(
+        id: "vocab_kaka",
+        swedish: "käka",
+        english: "to eat / grab food",
+        pronunciation: "sheh-kah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vill du käka nåt innan bio?",
+                english: "Do you want to grab food before the movie?",
+                contextNote: "Very common casual verb for eating.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'shaking' without the 'ing'.",
+        visualHook: "A mouth chewing on pizza.",
+        cultureHook: "Used far more than 'äta' in colloquial conversations.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    public static let sugen = VocabItem(
+        id: "vocab_sugen",
+        swedish: "sugen",
+        english: "craving / in the mood for",
+        pronunciation: "sew-yen",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag är sjukt sugen på pizza.",
+                english: "I am super craving pizza.",
+                contextNote: "Adjective describing hunger/craving.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'sewing' machine.",
+        visualHook: "A needle sewing a slice of pepperoni.",
+        cultureHook: "Essential Swedish word for expressing desire for food or activity.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    // --- ADDITIONAL DATING LESSON VOCAB ---
+    public static let ex = VocabItem(
+        id: "vocab_ex",
+        swedish: "ex",
+        english: "ex-partner",
+        pronunciation: "ex",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag sprang in i mitt ex idag.",
+                english: "I ran into my ex today.",
+                contextNote: "Short for ex-partner.",
+                registerLabel: .neutral
+            )
+        ],
+        soundHook: "Sounds exactly like English 'ex'.",
+        visualHook: "A giant red X standing between a couple.",
+        cultureHook: "Universally understood.",
+        registerLabel: .neutral,
+        relatedItemIDs: []
+    )
+
+    public static let sambo = VocabItem(
+        id: "vocab_sambo",
+        swedish: "sambo",
+        english: "cohabitating partner",
+        pronunciation: "sam-bo",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag och min sambo har köpt lägenhet.",
+                english: "Me and my cohabitating partner bought an apartment.",
+                contextNote: "Legal and social term for living together without marriage.",
+                registerLabel: .neutral
+            )
+        ],
+        soundHook: "Sounds like 'samba'.",
+        visualHook: "A couple dancing samba in their new living room.",
+        cultureHook: "Extremely common in Sweden, often preferred over marriage.",
+        registerLabel: .neutral,
+        relatedItemIDs: []
+    )
+
+    public static let singel = VocabItem(
+        id: "vocab_singel",
+        swedish: "singel",
+        english: "single",
+        pronunciation: "sing-el",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Är du singel eller i ett förhållande?",
+                english: "Are you single or in a relationship?",
+                contextNote: "Relationship status.",
+                registerLabel: .neutral
+            )
+        ],
+        soundHook: "Sounds exactly like English 'single'.",
+        visualHook: "A single solo musical note playing on stage.",
+        cultureHook: "Standard relationship term.",
+        registerLabel: .neutral,
+        relatedItemIDs: []
+    )
+
+    public static let ghosta = VocabItem(
+        id: "vocab_ghosta",
+        swedish: "ghosta",
+        english: "to ghost (suddenly stop replying)",
+        pronunciation: "goh-stah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han ghostade mig efter första dejten.",
+                english: "He ghosted me after the first date.",
+                contextNote: "Swedified English dating verb.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'ghost'.",
+        visualHook: "A friendly ghost holding a phone with no replies.",
+        cultureHook: "Modern digital dating culture.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    // --- ADDITIONAL SWEARS LESSON VOCAB ---
+    public static let skit = VocabItem(
+        id: "vocab_skit",
+        swedish: "skit",
+        english: "crap / shit",
+        pronunciation: "sheet",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vilket skitväder!",
+                english: "What crappy weather!",
+                contextNote: "Very common mild swear and prefix meaning 'very'.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'sheet' of paper.",
+        visualHook: "A wet sheet of paper in the rain.",
+        cultureHook: "Can be vulgar or just informal depending on tone and context.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+
+    public static let skitstovel = VocabItem(
+        id: "vocab_skitstovel",
+        swedish: "skitstövel",
+        english: "asshole / jerk",
+        pronunciation: "sheet-stuhv-el",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han är en riktig skitstövel.",
+                english: "He is a real asshole.",
+                contextNote: "Literal translation: 'shit-boot'.",
+                registerLabel: .vulgar
+            )
+        ],
+        soundHook: "Sounds like 'sheet' + 'stove'.",
+        visualHook: "A boot made of mud walking on a stove.",
+        cultureHook: "Old-school but highly effective insult.",
+        registerLabel: .vulgar,
+        relatedItemIDs: []
+    )
+
+    public static let satan = VocabItem(
+        id: "vocab_satan",
+        swedish: "satan",
+        english: "damn / satan",
+        pronunciation: "sah-tahn",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Satan också, jag glömde plånboken!",
+                english: "Damn it, I forgot my wallet!",
+                contextNote: "Religious-based swear word.",
+                registerLabel: .vulgar
+            )
+        ],
+        soundHook: "Sounds like 'satan'.",
+        visualHook: "A pitchfork on fire.",
+        cultureHook: "Middle-intensity swear word.",
+        registerLabel: .vulgar,
+        relatedItemIDs: []
+    )
+
     public static let allVocabItems: [VocabItem] = [
         standup, sprint, pinga, vabba, sajna, prio, sittaIMote, taDetOffline,
         paDet, kingsMo, codeReview, fredagsmys, ASAP, kriga, spika, hojdare,
         fika, gnalla, skitaI, losa, sjukskrivaSig, flexa, overtid, AW,
         bre, beckna, aina, guss, keff, tugg,
+        para, shurda, ortens, lax, kanin, jalla, abo,
         dd, vdg, iaf, ksk, oxa,
+        cs, vgd, idg, imr, dsm, ftg,
         bira, skal, kroka, chilla, taggad,
+        krubb, fyllekak, kaka, sugen,
         ragg, haffa, strula, dumpa,
-        fan, javlar, helvete
+        ex, sambo, singel, ghosta,
+        fan, javlar, helvete,
+        skit, skitstovel, satan
     ]
     
     // MARK: - Dialogues
@@ -1492,10 +1982,178 @@ public struct LessonData {
                 )
             ],
             characterIDs: ["karin"]
+        ),
+        
+        // --- NEW LESSONS ---
+        Lesson(
+            id: "street_lifestyle",
+            moduleID: "gatanssprak",
+            title: "Suburban Lifestyle",
+            estimatedMinutes: 12,
+            vocabItems: [para, shurda, ortens, lax, kanin, jalla, abo],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Suburban youth culture centers around hanging out in the local square, sharing stories, eating 'ortens' food, and hustling. Slang terms like 'para' (money), 'shurda' (guy), and 'jalla' (hurry up) are ubiquitous.",
+                illustrationName: "street_lifestyle_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_st3_1",
+                    type: .multipleChoice,
+                    prompt: "What is 'para'?",
+                    correctAnswer: "money",
+                    options: ["money", "friend", "police", "food"]
+                ),
+                Exercise(
+                    id: "ex_st3_2",
+                    type: .multipleChoice,
+                    prompt: "What is a 'shurda'?",
+                    correctAnswer: "guy / dude",
+                    options: ["girl", "police", "guy / dude", "house"]
+                ),
+                Exercise(
+                    id: "ex_st3_3",
+                    type: .multipleChoice,
+                    prompt: "What does 'jalla' mean?",
+                    correctAnswer: "hurry up / come on",
+                    options: ["stop", "hurry up / come on", "sleep", "eat"]
+                )
+            ],
+            characterIDs: ["linh", "erik"]
+        ),
+        Lesson(
+            id: "sms_plans",
+            moduleID: "sms_social",
+            title: "Making Plans",
+            estimatedMinutes: 10,
+            vocabItems: [cs, vgd, idg, imr, dsm, ftg],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Making quick plans via text is all about efficiency. Using short codes like 'cs' (see you) and 'idg' (today) is standard etiquette.",
+                illustrationName: "sms_plans_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sms3_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'cs' mean in a text?",
+                    correctAnswer: "see you / see each other",
+                    options: ["computer science", "see you / see each other", "call soon", "please"]
+                ),
+                Exercise(
+                    id: "ex_sms3_2",
+                    type: .multipleChoice,
+                    prompt: "What does 'imr' stand for?",
+                    correctAnswer: "tomorrow",
+                    options: ["today", "tomorrow", "now", "never"]
+                ),
+                Exercise(
+                    id: "ex_sms3_3",
+                    type: .multipleChoice,
+                    prompt: "What does 'dsm' mean?",
+                    correctAnswer: "likewise / same to you",
+                    options: ["don't see me", "likewise / same to you", "maybe", "no thanks"]
+                )
+            ],
+            characterIDs: ["maja", "linh"]
+        ),
+        Lesson(
+            id: "social_food",
+            moduleID: "socialt_bar",
+            title: "Late Night Cravings",
+            estimatedMinutes: 10,
+            vocabItems: [krubb, fyllekak, kaka, sugen],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Food is a massive part of Swedish socializing. Whether you crave a coffee break ('fika') or need some greasy 'fyllekäk' (drunk food) after a night out, these terms are vital.",
+                illustrationName: "social_food_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_soc3_1",
+                    type: .multipleChoice,
+                    prompt: "What is 'krubb'?",
+                    correctAnswer: "food / grub",
+                    options: ["drink", "food / grub", "money", "sleep"]
+                ),
+                Exercise(
+                    id: "ex_soc3_2",
+                    type: .multipleChoice,
+                    prompt: "What does 'fyllekäk' mean?",
+                    correctAnswer: "drunk food",
+                    options: ["breakfast", "drunk food", "desert", "lunch"]
+                ),
+                Exercise(
+                    id: "ex_soc3_3",
+                    type: .multipleChoice,
+                    prompt: "What does 'sugen' mean?",
+                    correctAnswer: "craving / in the mood for",
+                    options: ["full", "craving / in the mood for", "angry", "tired"]
+                )
+            ],
+            characterIDs: ["erik", "maja"]
+        ),
+        Lesson(
+            id: "dating_future",
+            moduleID: "dating",
+            title: "Future & Commitments",
+            estimatedMinutes: 12,
+            vocabItems: [ex, sambo, singel, ghosta],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedes are famous for relationship cohabitation. The word 'sambo' is a legally defined relationship status for couples living together.",
+                illustrationName: "dating_future_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_dat3_1",
+                    type: .multipleChoice,
+                    prompt: "What is a 'sambo'?",
+                    correctAnswer: "cohabitating partner",
+                    options: ["friend", "cohabitating partner", "ex", "boss"]
+                ),
+                Exercise(
+                    id: "ex_dat3_2",
+                    type: .multipleChoice,
+                    prompt: "What is 'ghosta'?",
+                    correctAnswer: "to ghost (suddenly stop replying)",
+                    options: ["to call", "to ghost (suddenly stop replying)", "to hug", "to match"]
+                )
+            ],
+            characterIDs: ["linh", "maja"]
+        ),
+        Lesson(
+            id: "swears_insults",
+            moduleID: "svordomar",
+            title: "Expressing Frustration & Insults",
+            estimatedMinutes: 10,
+            vocabItems: [skit, skitstovel, satan],
+            culturalContextCard: CulturalContextCard(
+                bodyText: "Swedish insults can range from classic terms like 'skitstövel' (asshole) to religious swearing. Use them with care!",
+                illustrationName: "swears_insults_illustration"
+            ),
+            dialogues: [],
+            exercises: [
+                Exercise(
+                    id: "ex_sw3_1",
+                    type: .multipleChoice,
+                    prompt: "What does 'skitstövel' literally translate to?",
+                    correctAnswer: "shit-boot",
+                    options: ["shit-shoe", "shit-boot", "mud-box", "asshole"]
+                ),
+                Exercise(
+                    id: "ex_sw3_2",
+                    type: .multipleChoice,
+                    prompt: "What does 'skit' mean?",
+                    correctAnswer: "crap / shit",
+                    options: ["good", "crap / shit", "fun", "crazy"]
+                )
+            ],
+            characterIDs: ["erik", "karin"]
         )
     ]
     
-    // MARK: - Boss Level
+    // MARK: - Boss Levels
     public static let bossArbeteTech = BossLevel(
         id: "boss_arbete_tech",
         moduleID: "arbete_tech",
@@ -1510,7 +2168,69 @@ public struct LessonData {
         partialThreshold: 0.6
     )
     
-    public static let allBossLevels: [BossLevel] = [bossArbeteTech]
+    public static let bossGatansSprak = BossLevel(
+        id: "boss_gatanssprak",
+        moduleID: "gatanssprak",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+    
+    public static let bossSmsSocial = BossLevel(
+        id: "boss_sms_social",
+        moduleID: "sms_social",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+
+    public static let bossSocialtBar = BossLevel(
+        id: "boss_socialt_bar",
+        moduleID: "socialt_bar",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+
+    public static let bossDating = BossLevel(
+        id: "boss_dating",
+        moduleID: "dating",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+
+    public static let bossSvordomar = BossLevel(
+        id: "boss_svordomar",
+        moduleID: "svordomar",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+    
+    public static let allBossLevels: [BossLevel] = [
+        bossArbeteTech,
+        bossGatansSprak,
+        bossSmsSocial,
+        bossSocialtBar,
+        bossDating,
+        bossSvordomar
+    ]
     
     // MARK: - Helper getters
     public static func getLesson(byID id: String) -> Lesson? {

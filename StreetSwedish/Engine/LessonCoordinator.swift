@@ -42,6 +42,7 @@ public final class LessonCoordinator: ObservableObject {
         if let savedStep = manager.progress.lessonResumeStepIndices?[lesson.id] {
             self.currentStepIndex = savedStep
         }
+        skipEmptyActs()
     }
     
     public func saveProgressState() {
@@ -158,7 +159,24 @@ public final class LessonCoordinator: ObservableObject {
             currentAct = nextAct
             currentStepIndex = 0
         }
+        skipEmptyActs(onComplete: onComplete)
         saveProgressState()
+    }
+    
+    private func skipEmptyActs(onComplete: ((Int) -> Void)? = nil) {
+        while totalStepsInCurrentAct == 0 {
+            guard let nextAct = LessonAct(rawValue: currentAct.rawValue + 1) else {
+                if let onComplete = onComplete {
+                    finishLesson(onComplete: onComplete)
+                } else {
+                    self.isCompleted = true
+                    self.showCelebration = true
+                }
+                break
+            }
+            currentAct = nextAct
+            currentStepIndex = 0
+        }
     }
     
     private func finishLesson(onComplete: (Int) -> Void) {
