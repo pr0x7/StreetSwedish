@@ -30,7 +30,7 @@ jobs:
 
       - name: Create IPA Package
         run: |
-          mkdir Payload
+          mkdir -p Payload
           APP_PATH=$(find build -name "*.app" -type d -print -quit)
           if [ -n "$APP_PATH" ]; then
             echo "Found app bundle at: $APP_PATH"
@@ -40,16 +40,7 @@ jobs:
             mkdir -p Payload/StreetSwedish.app
             cp build/Build/Products/Release-iphoneos/StreetSwedish Payload/StreetSwedish.app/
             
-            # Compile Assets (including AppIcon) using actool
-            echo "Compiling asset catalog..."
-            xcrun actool --compile Payload/StreetSwedish.app \
-              --platform iphoneos \
-              --minimum-deployment-target 16.0 \
-              --app-icon AppIcon \
-              --output-format xml1 \
-              StreetSwedish/Assets.xcassets
-            
-            echo "Writing Info.plist..."
+            # Create a basic Info.plist for the fallback
             echo '<?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
             <plist version="1.0">
@@ -80,21 +71,36 @@ jobs:
                 </array>
                 <key>UILaunchScreen</key>
                 <dict/>
-                <key>CFBundleIcons</key>
-                <dict>
-                    <key>CFBundlePrimaryIcon</key>
-                    <dict>
-                        <key>CFBundleIconFiles</key>
-                        <array>
-                            <string>AppIcon60x60</string>
-                        </array>
-                        <key>CFBundleIconName</key>
-                        <string>AppIcon</string>
-                    </dict>
-                </dict>
             </dict>
             </plist>' > Payload/StreetSwedish.app/Info.plist
           fi
+          
+          # Target the final app bundle in Payload/
+          FINAL_APP=$(find Payload -name "*.app" -type d -print -quit)
+          echo "Targeting app bundle for icon injection: $FINAL_APP"
+          
+          # Compile the asset catalog containing the AppIcon into the bundle
+          echo "Compiling asset catalog with actool..."
+          xcrun actool --compile "$FINAL_APP" \
+            --platform iphoneos \
+            --minimum-deployment-target 16.0 \
+            --app-icon AppIcon \
+            --output-format xml1 \
+            StreetSwedish/Assets.xcassets
+            
+          # Inject CFBundleIcons into Info.plist
+          echo "Injecting CFBundleIcons plist configuration..."
+          plutil -remove CFBundleIcons "$FINAL_APP/Info.plist" || true
+          plutil -insert CFBundleIcons -xml '<dict><key>CFBundlePrimaryIcon</key><dict><key>CFBundleIconFiles</key><array><string>AppIcon20x20</string><string>AppIcon29x29</string><string>AppIcon40x40</string><string>AppIcon60x60</string></array><key>CFBundleIconName</key><string>AppIcon</string></dict></dict>' "$FINAL_APP/Info.plist"
+          
+          # Print the final Info.plist to build logs for verification
+          echo "Final Info.plist:"
+          plutil -p "$FINAL_APP/Info.plist"
+          
+          # Print the files in the app bundle to verify compiled icon assets
+          echo "Files inside the compiled app bundle:"
+          find "$FINAL_APP" -maxdepth 2
+          
           zip -r StreetSwedish.ipa Payload
 
       - name: Upload IPA Artifact
