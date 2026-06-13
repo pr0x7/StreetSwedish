@@ -93,6 +93,7 @@ jobs:
             --target-device iphone \
             --target-device ipad \
             --app-icon AppIcon \
+            --output-partial-info-plist "$(pwd)/partial.plist" \
             --output-format xml1 \
             "$(pwd)/StreetSwedish/Assets.xcassets" > actool.log 2>&1 || { cat actool.log; exit 1; }
           cat actool.log
