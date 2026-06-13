@@ -123,15 +123,15 @@ public struct PracticeView: View {
     // MARK: - 2. Active Review Screen
     private func reviewGameplayView() -> some View {
         guard currentQueueIndex < reviewQueue.count else {
-            return reviewCompletedView()
+            return AnyView(reviewCompletedView())
         }
         
         let itemID = reviewQueue[currentQueueIndex]
         guard let item = LessonData.allVocabItems.first(where: { $0.id == itemID }) else {
-            return reviewCompletedView()
+            return AnyView(reviewCompletedView())
         }
         
-        return VStack(spacing: 20) {
+        return AnyView(VStack(spacing: 20) {
             // Header
             HStack {
                 Button(action: {
@@ -309,7 +309,8 @@ public struct PracticeView: View {
                 }
             }
             .padding(.bottom, 24)
-        }
+        })
+    }
     }
     
     // MARK: - 3. Review Completed View

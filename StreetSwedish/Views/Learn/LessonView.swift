@@ -243,7 +243,7 @@ public struct LessonView: View {
                             coordinator.submitAnswer(answer: answer, scheduler: srsScheduler) {
                                 // On correct answer: trigger haptic and auto advance after 0.8s
                                 triggerHaptic(.success)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + coordinator.lesson.autoAdvanceDelay) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + progressManager.progress.autoAdvanceDelay) {
                                     withAnimation {
                                         coordinator.nextStep(onComplete: finishLessonProgress)
                                     }

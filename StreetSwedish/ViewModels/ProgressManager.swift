@@ -49,6 +49,11 @@ public final class ProgressManager: ObservableObject {
         }
     }
     
+    public func completeOnboarding() {
+        progress.hasCompletedOnboarding = true
+        save()
+    }
+    
     // MARK: - XP & Rewards
     public func addXP(_ amount: Int) {
         progress.xp += amount

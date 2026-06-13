@@ -351,12 +351,12 @@ public struct OnboardingView: View {
                     srsScheduler.items[item.id] = SRSItem(
                         itemID: item.id,
                         stage: 2,
-                        lastIntervalDays: 1,
-                        easeFactor: 2.5,
-                        dueDate: Date().addingTimeInterval(86400) // Tomorrow
+                        easinessFactor: 2.5,
+                        intervalDays: 1.0,
+                        nextReviewDate: Date().addingTimeInterval(86400) // Tomorrow
                     )
                 }
-                srsScheduler.saveProgress()
+                srsScheduler.saveItems()
             }
             
             // Save completed status

@@ -1,7 +1,7 @@
 import Foundation
 import AVFoundation
 
-public final class SpeechHelper: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
+public final class SpeechHelper: NSObject, ObservableObject, AVSpeechSynthesizerDelegate, @unchecked Sendable {
     public static let shared = SpeechHelper()
     
     private let synthesizer = AVSpeechSynthesizer()

@@ -38,8 +38,13 @@ public struct HomeView: View {
                     .padding(20)
                 }
             }
-            .navigationDestination(item: $showingLesson) { lesson in
-                LessonView(lesson: lesson)
+            .navigationDestination(isPresented: Binding(
+                get: { showingLesson != nil },
+                set: { if !$0 { showingLesson = nil } }
+            )) {
+                if let lesson = showingLesson {
+                    LessonView(lesson: lesson)
+                }
             }
         }
     }

@@ -64,11 +64,21 @@ public struct CoursesView: View {
             }
             .navigationTitle("Lär dig (Learn)")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(item: $showingLesson) { lesson in
-                LessonView(lesson: lesson)
+            .navigationDestination(isPresented: Binding(
+                get: { showingLesson != nil },
+                set: { if !$0 { showingLesson = nil } }
+            )) {
+                if let lesson = showingLesson {
+                    LessonView(lesson: lesson)
+                }
             }
-            .navigationDestination(item: $showingBossLevel) { boss in
-                BossLevelView(bossLevel: boss)
+            .navigationDestination(isPresented: Binding(
+                get: { showingBossLevel != nil },
+                set: { if !$0 { showingBossLevel = nil } }
+            )) {
+                if let boss = showingBossLevel {
+                    BossLevelView(bossLevel: boss)
+                }
             }
             .onAppear {
                 startBreathingAnimation()

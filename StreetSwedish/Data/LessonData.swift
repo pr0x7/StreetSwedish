@@ -183,7 +183,7 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
-    public static let sitta i möte = VocabItem(
+    public static let sittaIMote = VocabItem(
         id: "vocab_sitta_i_mote",
         swedish: "sitta i möte",
         english: "to be stuck/sitting in a meeting",
@@ -203,7 +203,7 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
-    public static let ta det offline = VocabItem(
+    public static let taDetOffline = VocabItem(
         id: "vocab_ta_det_offline",
         swedish: "ta det offline",
         english: "to discuss later outside the current meeting",
@@ -224,7 +224,7 @@ public struct LessonData {
     )
     
     // --- LESSON 2 VOCAB ---
-    public static let pa det = VocabItem(
+    public static let paDet = VocabItem(
         id: "vocab_pa_det",
         swedish: "på det",
         english: "on it / handling it",
@@ -244,7 +244,7 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
-    public static let kings mo = VocabItem(
+    public static let kingsMo = VocabItem(
         id: "vocab_kings_mo",
         swedish: "kings mö",
         english: "a legendary / super productive meeting",
@@ -264,7 +264,7 @@ public struct LessonData {
         relatedItemIDs: ["vocab_sitta_i_mote"]
     )
     
-    public static let code review = VocabItem(
+    public static let codeReview = VocabItem(
         id: "vocab_code_review",
         swedish: "code review",
         english: "code review",
@@ -425,7 +425,7 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
-    public static let skita i = VocabItem(
+    public static let skitaI = VocabItem(
         id: "vocab_skita_i",
         swedish: "skita i",
         english: "to ignore / not care about something",
@@ -466,7 +466,7 @@ public struct LessonData {
         relatedItemIDs: []
     )
     
-    public static let sjukskriva sig = VocabItem(
+    public static let sjukskrivaSig = VocabItem(
         id: "vocab_sjukskriva_sig",
         swedish: "sjukskriva sig",
         english: "to call in sick",
@@ -547,9 +547,9 @@ public struct LessonData {
     )
     
     public static let allVocabItems: [VocabItem] = [
-        standup, sprint, pinga, vabba, sajna, prio, sitta i möte, ta det offline,
-        pa det, kings mo, code review, fredagsmys, ASAP, kriga, spika, hojdare,
-        fika, gnalla, skita i, losa, sjukskriva sig, flexa, overtid, AW
+        standup, sprint, pinga, vabba, sajna, prio, sittaIMote, taDetOffline,
+        paDet, kingsMo, codeReview, fredagsmys, ASAP, kriga, spika, hojdare,
+        fika, gnalla, skitaI, losa, sjukskrivaSig, flexa, overtid, AW
     ]
     
     // MARK: - Dialogues
@@ -694,7 +694,7 @@ public struct LessonData {
             moduleID: "arbete_tech",
             title: "Tech Slang Basics",
             estimatedMinutes: 15,
-            vocabItems: [standup, sprint, pinga, vabba, sajna, prio, sitta i möte, ta det offline],
+            vocabItems: [standup, sprint, pinga, vabba, sajna, prio, sittaIMote, taDetOffline],
             culturalContextCard: CulturalContextCard(
                 bodyText: "Welcome to Swedish startup life! In Sweden, hierarchies are flat. You call your CEO by their first name, and decision-making requires consensus. If you want to raise a point, do it at the standup. If it drags on, a colleague will politely suggest to 'ta det offline'.",
                 illustrationName: "flat_hierarchy_illustration"
@@ -708,7 +708,7 @@ public struct LessonData {
             moduleID: "arbete_tech",
             title: "Workplace Survival & Swag",
             estimatedMinutes: 15,
-            vocabItems: [pa det, kings mo, code review, fredagsmys, ASAP, kriga, spika, hojdare],
+            vocabItems: [paDet, kingsMo, codeReview, fredagsmys, ASAP, kriga, spika, hojdare],
             culturalContextCard: CulturalContextCard(
                 bodyText: "Agile rituals dictate everything in Stockholm tech hubs. But after a hard sprint of 'krigande' (grinding), Swedish workers pivot to the sacred 'fredagsmys' (Friday cozy time). Even high-up management ('höjdare') participate in making the team feel comfortable.",
                 illustrationName: "cozy_office_illustration"
@@ -722,7 +722,7 @@ public struct LessonData {
             moduleID: "arbete_tech",
             title: "Office Dramas & Socializing",
             estimatedMinutes: 15,
-            vocabItems: [fika, gnalla, skita i, losa, sjukskriva sig, flexa, overtid, AW],
+            vocabItems: [fika, gnalla, skitaI, losa, sjukskrivaSig, flexa, overtid, AW],
             culturalContextCard: CulturalContextCard(
                 bodyText: "Two words rule the social calendar: 'fika' (morning/afternoon coffee and cake) and 'AW' (After Work drinks). If someone is feeling down, they can 'flexa' or 'sjukskriva sig' without judgment. It is all about balance. Work hard, but never complain ('gnälla') without offering to 'lösa' the issue.",
                 illustrationName: "fika_aw_illustration"

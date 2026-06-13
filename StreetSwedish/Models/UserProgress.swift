@@ -89,6 +89,7 @@ public struct UserProgress: Codable, Hashable {
     
     // Onboarding & Settings
     public var onboardingPurpose: String        // E.g. "Work", "Partner"
+    public var hasCompletedOnboarding: Bool
     public var showGrammarNotes: Bool
     public var vulgarsHidden: Bool
     public var ttsRate: Float                  // Rate parameter for AVSpeech (default ~0.5)
@@ -112,6 +113,7 @@ public struct UserProgress: Codable, Hashable {
         completedLessonIDs: Set<String> = [],
         starredWords: Set<String> = [],
         onboardingPurpose: String = "",
+        hasCompletedOnboarding: Bool = false,
         showGrammarNotes: Bool = true,
         vulgarsHidden: Bool = false,
         ttsRate: Float = 0.5,
@@ -132,6 +134,7 @@ public struct UserProgress: Codable, Hashable {
         self.completedLessonIDs = completedLessonIDs
         self.starredWords = starredWords
         self.onboardingPurpose = onboardingPurpose
+        self.hasCompletedOnboarding = hasCompletedOnboarding
         self.showGrammarNotes = showGrammarNotes
         self.vulgarsHidden = vulgarsHidden
         self.ttsRate = ttsRate
