@@ -140,6 +140,10 @@ jobs:
             echo "=== Info.plist ===" >> release_contents.txt
             plutil -p Payload/StreetSwedish.app/Info.plist >> release_contents.txt || true
           fi
+          if [ -f actool.log ]; then
+            echo "=== actool.log ===" >> release_contents.txt
+            cat actool.log >> release_contents.txt || true
+          fi
           cat release_contents.txt || true
 
       - name: Commit build log
