@@ -1,4 +1,49 @@
 build/Build/Products/Release-iphoneos
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/Project
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftmodule
+build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.abi.json
+build/Build/Products/Release-iphoneos/StreetSwedish
 build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle
 build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle/Info.plist
 build/Build/Products/Release-iphoneos/PackageFrameworks
+build/Build/Products/Release-iphoneos/StreetSwedish.dSYM
+build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents
+build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents/Resources
+build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents/Info.plist
+=== Files inside Payload/StreetSwedish.app ===
+Payload/StreetSwedish.app
+Payload/StreetSwedish.app/StreetSwedish
+Payload/StreetSwedish.app/Info.plist
+=== Info.plist ===
+{
+  "CFBundleExecutable" => "StreetSwedish"
+  "CFBundleIcons" => {
+    "CFBundlePrimaryIcon" => {
+      "CFBundleIconFiles" => [
+        0 => "AppIcon20x20"
+        1 => "AppIcon29x29"
+        2 => "AppIcon40x40"
+        3 => "AppIcon60x60"
+      ]
+      "CFBundleIconName" => "AppIcon"
+    }
+  }
+  "CFBundleIdentifier" => "com.pr0x7.StreetSwedish"
+  "CFBundleName" => "StreetSwedish"
+  "CFBundlePackageType" => "APPL"
+  "CFBundleShortVersionString" => "1.0.0"
+  "CFBundleSupportedPlatforms" => [
+    0 => "iPhoneOS"
+  ]
+  "CFBundleVersion" => "1"
+  "LSRequiresIPhoneOS" => 1
+  "MinimumOSVersion" => "16.0"
+  "UIDeviceFamily" => [
+    0 => 1
+  ]
+  "UILaunchScreen" => {
+  }
+}
