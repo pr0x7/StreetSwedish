@@ -87,13 +87,19 @@ public struct CoursesView: View {
                     lesson: lesson,
                     status: status,
                     onStart: { selected in
-                        showingLesson = selected
+                        selectedLessonForDetails = nil
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            showingLesson = selected
+                        }
                     },
                     onResetAndStart: { selected in
+                        selectedLessonForDetails = nil
                         progressManager.progress.lessonResumeActs?[selected.id] = nil
                         progressManager.progress.lessonResumeStepIndices?[selected.id] = nil
                         progressManager.save()
-                        showingLesson = selected
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            showingLesson = selected
+                        }
                     }
                 )
                 .environmentObject(progressManager)
