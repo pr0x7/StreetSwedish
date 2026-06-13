@@ -7,8 +7,6 @@ Build settings from command line:
 
 Resolve Package Graph
 
-Resolve Package Graph
-
 
 Resolved source packages:
   StreetSwedish: /Users/runner/work/StreetSwedish/StreetSwedish
@@ -48,8 +46,8 @@ ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/X
 
 ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
 
-Build description signature: 0faf90a25fc6b56d4750c4feaac3724a
-Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/0faf90a25fc6b56d4750c4feaac3724a.xcbuilddata
+Build description signature: 4556b0bd95c4cd59827e5ec750dfafb3
+Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/4556b0bd95c4cd59827e5ec750dfafb3.xcbuilddata
 CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
     builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
