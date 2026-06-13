@@ -7,6 +7,8 @@ Build settings from command line:
 
 Resolve Package Graph
 
+Resolve Package Graph
+
 
 Resolved source packages:
   StreetSwedish: /Users/runner/work/StreetSwedish/StreetSwedish
@@ -50,8 +52,8 @@ ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/X
 
 ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
 
-Build description signature: 0d5c6ea34bb4aedacc23cbe0c9a978df
-Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/0d5c6ea34bb4aedacc23cbe0c9a978df.xcbuilddata
+Build description signature: 5d52df45c3963bd62f6ed2c7b5935059
+Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/5d52df45c3963bd62f6ed2c7b5935059.xcbuilddata
 CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
     builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
@@ -64,13 +66,13 @@ ClangStatCache /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeD
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk -o /Users/runner/work/StreetSwedish/StreetSwedish/build/SDKStatCaches.noindex/iphoneos18.5-22F76-a529daf784b3616c7c04a36aeb7f5c05.sdkstatcache
 
-CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos
-    cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
-    builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos
-
 CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
     builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos
+
+CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos
+    cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
+    builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos
 
 CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/PackageFrameworks
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
@@ -120,13 +122,13 @@ MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Releas
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle
 
-MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
-    cd /Users/runner/work/StreetSwedish/StreetSwedish
-    /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned
-
 MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned
+
+MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
+    cd /Users/runner/work/StreetSwedish/StreetSwedish
+    /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned
 
 CompileAssetCatalogVariant thinned /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle /Users/runner/work/StreetSwedish/StreetSwedish/StreetSwedish/Assets.xcassets (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
