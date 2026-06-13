@@ -52,8 +52,8 @@ ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/X
 
 ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
 
-Build description signature: eb4d2d6ae46f849f0f848ab391c829d1
-Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/eb4d2d6ae46f849f0f848ab391c829d1.xcbuilddata
+Build description signature: b19115fa8d8d5b36407595335c3567a8
+Build description path: /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/XCBuildData/b19115fa8d8d5b36407595335c3567a8.xcbuilddata
 CreateBuildDirectory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
     cd /Users/runner/work/StreetSwedish/StreetSwedish/.swiftpm/xcode
     builtin-create-build-directory /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products
@@ -122,13 +122,13 @@ MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Releas
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle
 
-MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
-    cd /Users/runner/work/StreetSwedish/StreetSwedish
-    /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned
-
 MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/thinned
+
+MkDir /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
+    cd /Users/runner/work/StreetSwedish/StreetSwedish
+    /bin/mkdir -p /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish_StreetSwedish.build/assetcatalog_output/unthinned
 
 CompileAssetCatalogVariant thinned /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish_StreetSwedish.bundle /Users/runner/work/StreetSwedish/StreetSwedish/StreetSwedish/Assets.xcassets (in target 'StreetSwedish_StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
@@ -190,13 +190,13 @@ Ld /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-i
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios16.0 -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk -Os -L/Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos -L/Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos -L/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F/Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release-iphoneos -F/Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/Developer/Library/Frameworks -filelist /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.LinkFileList -Xlinker -rpath -Xlinker @executable_path/../lib -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftmodule -o /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish
 
-Copy /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftdoc (in target 'StreetSwedish' from project 'StreetSwedish')
-    cd /Users/runner/work/StreetSwedish/StreetSwedish
-    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftdoc /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc
-
 Copy /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftmodule /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftmodule (in target 'StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
     builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftmodule /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftmodule
+
+Copy /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftdoc (in target 'StreetSwedish' from project 'StreetSwedish')
+    cd /Users/runner/work/StreetSwedish/StreetSwedish
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.swiftdoc /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.swiftdoc
 
 Copy /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Products/Release-iphoneos/StreetSwedish.swiftmodule/arm64-apple-ios.abi.json /Users/runner/work/StreetSwedish/StreetSwedish/build/Build/Intermediates.noindex/StreetSwedish.build/Release-iphoneos/StreetSwedish.build/Objects-normal/arm64/StreetSwedish.abi.json (in target 'StreetSwedish' from project 'StreetSwedish')
     cd /Users/runner/work/StreetSwedish/StreetSwedish
