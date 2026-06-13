@@ -20,7 +20,7 @@ jobs:
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            clean build
+            clean build > xcodebuild.log 2>&1
 
       - name: Create IPA Package
         run: |
@@ -30,6 +30,14 @@ jobs:
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: StreetSwedish-Unsigned-IPA
           path: StreetSwedish.ipa
+
+      - name: Upload Build Log on Failure
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Xcodebuild-Log
+          path: xcodebuild.log
