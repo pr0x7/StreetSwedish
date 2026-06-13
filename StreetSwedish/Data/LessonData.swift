@@ -57,6 +57,61 @@ public struct LessonData {
             elitePhraseIDs: ["elite_tech_1", "elite_tech_2"],
             unlockRequirement: nil,
             wordCount: 24
+        ),
+        Module(
+            id: "gatanssprak",
+            categoryID: "street",
+            title: "Gatans Språk",
+            subtitle: "Street Slang & Suburb Vibe",
+            lessonIDs: ["street_basics", "street_attitude"],
+            bossLevelID: "boss_gatanssprak",
+            elitePhraseIDs: ["elite_street_1"],
+            unlockRequirement: nil,
+            wordCount: 6
+        ),
+        Module(
+            id: "sms_social",
+            categoryID: "sms",
+            title: "SMS-Slang",
+            subtitle: "Fast texts and abbreviations",
+            lessonIDs: ["sms_basics", "sms_reactions"],
+            bossLevelID: "boss_sms_social",
+            elitePhraseIDs: ["elite_sms_1"],
+            unlockRequirement: nil,
+            wordCount: 5
+        ),
+        Module(
+            id: "socialt_bar",
+            categoryID: "social",
+            title: "Socialt & AW",
+            subtitle: "Bar talk and hanging out",
+            lessonIDs: ["social_drinking", "social_vibe"],
+            bossLevelID: "boss_socialt_bar",
+            elitePhraseIDs: ["elite_social_1"],
+            unlockRequirement: nil,
+            wordCount: 5
+        ),
+        Module(
+            id: "dating",
+            categoryID: "dating",
+            title: "Dejting & Kärlek",
+            subtitle: "Romance and flirting slang",
+            lessonIDs: ["dating_crush", "dating_drama"],
+            bossLevelID: "boss_dating",
+            elitePhraseIDs: ["elite_dating_1"],
+            unlockRequirement: nil,
+            wordCount: 4
+        ),
+        Module(
+            id: "svordomar",
+            categoryID: "swears",
+            title: "Svordomar",
+            subtitle: "Swedish swearing and curse words",
+            lessonIDs: ["swears_mild", "swears_spicy"],
+            bossLevelID: "boss_svordomar",
+            elitePhraseIDs: ["elite_swears_1"],
+            unlockRequirement: nil,
+            wordCount: 3
         )
     ]
     
@@ -546,10 +601,480 @@ public struct LessonData {
         relatedItemIDs: ["vocab_fika"]
     )
     
+    // --- STREET LESSON VOCAB ---
+    public static let bre = VocabItem(
+        id: "vocab_bre",
+        swedish: "bre",
+        english: "brother / bro",
+        pronunciation: "breh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vad gör du bre?",
+                english: "What are you doing bro?",
+                contextNote: "Extremely common street greeting.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'bread' without the 'd'.",
+        visualHook: "Two pieces of bread greeting each other on the street.",
+        cultureHook: "Originally from Balkan languages, popular among Swedish youth.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let beckna = VocabItem(
+        id: "vocab_beckna",
+        swedish: "beckna",
+        english: "to sell / hustle",
+        pronunciation: "beck-nah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han becknar grejer i orten.",
+                english: "He is selling things in the suburb.",
+                contextNote: "Suburban street hustle slang.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'beckon' (calling someone over).",
+        visualHook: "Someone beckoning you into an alley to sell you socks.",
+        cultureHook: "Heavy street/suburban usage for informal trading.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let aina = VocabItem(
+        id: "vocab_aina",
+        swedish: "aina",
+        english: "police",
+        pronunciation: "eye-nah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Aina kommer, spring!",
+                english: "The police are coming, run!",
+                contextNote: "Suburban youth slang for police.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'I know' - police know everything.",
+        visualHook: "A police car with giant eyes on the roof.",
+        cultureHook: "Turkish origin, heavily used in Sweden's multiethnic suburbs.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let guss = VocabItem(
+        id: "vocab_guss",
+        swedish: "guss",
+        english: "girl / chick",
+        pronunciation: "guss",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vem är den där gussen?",
+                english: "Who is that girl?",
+                contextNote: "Colloquial term for a young woman.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'gust' of wind.",
+        visualHook: "A girl standing in a gust of wind.",
+        cultureHook: "Turkish origin, very common suburban term.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let keff = VocabItem(
+        id: "vocab_keff",
+        swedish: "keff",
+        english: "bad / lame",
+        pronunciation: "keff",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Den där filmen var helt keff.",
+                english: "That movie was completely bad.",
+                contextNote: "Describes something low quality or bad.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like a bad 'chef'.",
+        visualHook: "A chef serving a burnt shoe.",
+        cultureHook: "From Arabic meaning quality/mood, inverted in Sweden to mean bad.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let tugg = VocabItem(
+        id: "vocab_tugg",
+        swedish: "tugg",
+        english: "chat / hanging out",
+        pronunciation: "tugg",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Kom, vi kör lite tugg.",
+                english: "Come, let's chat a bit.",
+                contextNote: "Literal meaning 'chewing', means chatting/hanging out.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'tug'.",
+        visualHook: "Tug-of-war using a phone.",
+        cultureHook: "Refers to the concept of chewing the fat / shooting the breeze.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    // --- SMS LESSON VOCAB ---
+    public static let dd = VocabItem(
+        id: "vocab_dd",
+        swedish: "dd",
+        english: "you then",
+        pronunciation: "deh-deh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag e trött, dd?",
+                english: "I'm tired, you?",
+                contextNote: "SMS shorthand for 'du då?'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "Double D.",
+        visualHook: "Two letters D talking to each other.",
+        cultureHook: "Extremely common in texting.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+    
+    public static let vdg = VocabItem(
+        id: "vocab_vdg",
+        swedish: "vdg",
+        english: "what are you doing",
+        pronunciation: "veh-deh-geh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Tja vdg ikväll?",
+                english: "Hey, what are you doing tonight?",
+                contextNote: "SMS shorthand for 'vad gör du?'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "V-D-G letters.",
+        visualHook: "Magnifying glass looking at someone texting.",
+        cultureHook: "Texting shorthand for everyday check-in.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+    
+    public static let iaf = VocabItem(
+        id: "vocab_iaf",
+        swedish: "iaf",
+        english: "in any case / anyway",
+        pronunciation: "ee-ah-eff",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Det regnar, men vi ses iaf.",
+                english: "It's raining, but we'll meet anyway.",
+                contextNote: "SMS shorthand for 'i alla fall'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "I-A-F letters.",
+        visualHook: "Signpost pointing in all directions.",
+        cultureHook: "Saves characters in text messages.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+    
+    public static let ksk = VocabItem(
+        id: "vocab_ksk",
+        swedish: "ksk",
+        english: "maybe",
+        pronunciation: "kå-ess-kå",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag kommer ksk imorgon.",
+                english: "I'm coming maybe tomorrow.",
+                contextNote: "SMS shorthand for 'kanske'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "Sound of whispering 'k-s-k'.",
+        visualHook: "Question mark balancing on a tightrope.",
+        cultureHook: "Shortens standard word 'kanske'.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+    
+    public static let oxa = VocabItem(
+        id: "vocab_oxa",
+        swedish: "oxå",
+        english: "also / too",
+        pronunciation: "ock-saw",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag vill oxå ha fika.",
+                english: "I also want coffee break.",
+                contextNote: "Shorthand using 'x' for 'också'.",
+                registerLabel: .textOnly
+            )
+        ],
+        soundHook: "Sounds like 'ox' and 'saw'.",
+        visualHook: "An ox sawing wood.",
+        cultureHook: "Colloquial texting shortcut.",
+        registerLabel: .textOnly,
+        relatedItemIDs: []
+    )
+    
+    // --- SOCIAL / AW LESSON VOCAB ---
+    public static let bira = VocabItem(
+        id: "vocab_bira",
+        swedish: "bira",
+        english: "beer",
+        pronunciation: "beer-ah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Ska vi ta en bira efter jobbet?",
+                english: "Shall we grab a beer after work?",
+                contextNote: "Common slang for beer.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'beer' with an 'a'.",
+        visualHook: "A beer waving at you.",
+        cultureHook: "Very common in social settings.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    public static let skal = VocabItem(
+        id: "vocab_skal",
+        swedish: "skål",
+        english: "cheers",
+        pronunciation: "skawl",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Skål för helgen!",
+                english: "Cheers to the weekend!",
+                contextNote: "Toasting expression.",
+                registerLabel: .neutral
+            )
+        ],
+        soundHook: "Sounds like 'school'.",
+        visualHook: "Skull wearing a party hat.",
+        cultureHook: "Make eye contact when saying skål!",
+        registerLabel: .neutral,
+        relatedItemIDs: []
+    )
+    
+    public static let kroka = VocabItem(
+        id: "vocab_kroka",
+        swedish: "kröka",
+        english: "to drink / party",
+        pronunciation: "kruh-kah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Vi ska kröka på fredag.",
+                english: "We are going to drink heavily on Friday.",
+                contextNote: "Slang verb for drinking alcohol.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'croak'.",
+        visualHook: "A frog holding a drink.",
+        cultureHook: "Youth slang for partying.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    public static let chilla = VocabItem(
+        id: "vocab_chilla",
+        swedish: "chilla",
+        english: "to chill / relax",
+        pronunciation: "chill-ah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag vill bara chilla hemma.",
+                english: "I just want to chill at home.",
+                contextNote: "Verb meaning to relax.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like English 'chill'.",
+        visualHook: "Ice cube on a hammock.",
+        cultureHook: "Widely used in modern Swedish.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    public static let taggad = VocabItem(
+        id: "vocab_taggad",
+        swedish: "taggad",
+        english: "hyped / pumped",
+        pronunciation: "tag-ahd",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag är så taggad på konserten!",
+                english: "I am so hyped for the concert!",
+                contextNote: "Adjective meaning excited/alert.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'tagged'.",
+        visualHook: "Excited price tag.",
+        cultureHook: "Derived from 'tagg' (spike/thorn).",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    // --- DATING LESSON VOCAB ---
+    public static let ragg = VocabItem(
+        id: "vocab_ragg",
+        swedish: "ragg",
+        english: "pickup / flirt",
+        pronunciation: "ragg",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Han hittade ett ragg på klubben.",
+                english: "He found a pickup/flirt at the club.",
+                contextNote: "Noun/verb for picking someone up.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'rag'.",
+        visualHook: "Car covered in rags trying to look cool.",
+        cultureHook: "Dating scene terminology.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    public static let haffa = VocabItem(
+        id: "vocab_haffa",
+        swedish: "haffa",
+        english: "to hook up / catch",
+        pronunciation: "haff-ah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jag ska försöka haffa henne ikväll.",
+                english: "I will try to hook up with her tonight.",
+                contextNote: "Slang for getting/hooking up.",
+                registerLabel: .slang
+            )
+        ],
+        soundHook: "Sounds like 'half a'.",
+        visualHook: "Hand catching a flying heart.",
+        cultureHook: "Modern youth slang.",
+        registerLabel: .slang,
+        relatedItemIDs: []
+    )
+    
+    public static let strula = VocabItem(
+        id: "vocab_strula",
+        swedish: "strula",
+        english: "to make out / mess around",
+        pronunciation: "strew-lah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "De strulade hela natten.",
+                english: "They made out all night.",
+                contextNote: "Verb meaning to kiss/make out.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'strudel'.",
+        visualHook: "Two strudels hugging.",
+        cultureHook: "Common teen/young adult term.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    public static let dumpa = VocabItem(
+        id: "vocab_dumpa",
+        swedish: "dumpa",
+        english: "to dump",
+        pronunciation: "dum-pah",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Hon dumpade sin kille.",
+                english: "She dumped her boyfriend.",
+                contextNote: "To end a relationship.",
+                registerLabel: .informal
+            )
+        ],
+        soundHook: "Sounds like 'dump'.",
+        visualHook: "Dump truck dumping hearts.",
+        cultureHook: "Informal breakup word.",
+        registerLabel: .informal,
+        relatedItemIDs: []
+    )
+    
+    // --- SWEARS LESSON VOCAB ---
+    public static let fan = VocabItem(
+        id: "vocab_fan",
+        swedish: "fan",
+        english: "damn / devil",
+        pronunciation: "fahn",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Fan, jag tappade nycklarna!",
+                english: "Damn, I dropped my keys!",
+                contextNote: "Most common Swedish curse word.",
+                registerLabel: .vulgar
+            )
+        ],
+        soundHook: "Sounds like 'fan'.",
+        visualHook: "Fan blowing devil horns.",
+        cultureHook: "Widely used for frustration.",
+        registerLabel: .vulgar,
+        relatedItemIDs: []
+    )
+    
+    public static let javlar = VocabItem(
+        id: "vocab_javlar",
+        swedish: "jävlar",
+        english: "damn / devils",
+        pronunciation: "yev-lar",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Jävlar, vad kallt det är!",
+                english: "Damn, how cold it is!",
+                contextNote: "Plural of devil, used for emphasis.",
+                registerLabel: .vulgar
+            )
+        ],
+        soundHook: "Sounds like 'yeller'.",
+        visualHook: "Tiny devils screaming.",
+        cultureHook: "Strong emphasis/swear.",
+        registerLabel: .vulgar,
+        relatedItemIDs: []
+    )
+    
+    public static let helvete = VocabItem(
+        id: "vocab_helvete",
+        swedish: "helvete",
+        english: "hell",
+        pronunciation: "hel-veh-teh",
+        exampleSentences: [
+            ExampleSentence(
+                swedish: "Dra åt helvete!",
+                english: "Go to hell!",
+                contextNote: "Strong curse word.",
+                registerLabel: .vulgar
+            )
+        ],
+        soundHook: "Sounds like 'hell-wait'.",
+        visualHook: "Waiting room in hell.",
+        cultureHook: "Strong curse word.",
+        registerLabel: .vulgar,
+        relatedItemIDs: []
+    )
+    
     public static let allVocabItems: [VocabItem] = [
         standup, sprint, pinga, vabba, sajna, prio, sittaIMote, taDetOffline,
         paDet, kingsMo, codeReview, fredagsmys, ASAP, kriga, spika, hojdare,
-        fika, gnalla, skitaI, losa, sjukskrivaSig, flexa, overtid, AW
+        fika, gnalla, skitaI, losa, sjukskrivaSig, flexa, overtid, AW,
+        bre, beckna, aina, guss, keff, tugg,
+        dd, vdg, iaf, ksk, oxa,
+        bira, skal, kroka, chilla, taggad,
+        ragg, haffa, strula, dumpa,
+        fan, javlar, helvete
     ]
     
     // MARK: - Dialogues

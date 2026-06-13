@@ -100,6 +100,7 @@ public struct LessonView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
+            coordinator.setManager(progressManager)
             // Prepare cards for introduction
             introStack = coordinator.lesson.vocabItems
         }

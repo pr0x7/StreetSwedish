@@ -3,6 +3,7 @@ import Combine
 
 public final class LessonCoordinator: ObservableObject {
     public let lesson: Lesson
+    private var progressManager: ProgressManager? = nil
     
     // Act & Step tracking
     @Published public var currentAct: LessonAct = .sceneSetting
@@ -29,6 +30,36 @@ public final class LessonCoordinator: ObservableObject {
     public init(lesson: Lesson) {
         self.lesson = lesson
         setupExercisesAndDialogue()
+    }
+    
+    public func setManager(_ manager: ProgressManager) {
+        self.progressManager = manager
+        // Load history/resume state
+        if let savedActRaw = manager.progress.lessonResumeActs?[lesson.id],
+           let savedAct = LessonAct(rawValue: savedActRaw) {
+            self.currentAct = savedAct
+        }
+        if let savedStep = manager.progress.lessonResumeStepIndices?[lesson.id] {
+            self.currentStepIndex = savedStep
+        }
+    }
+    
+    public func saveProgressState() {
+        guard let manager = progressManager else { return }
+        if isCompleted {
+            manager.progress.lessonResumeActs?[lesson.id] = nil
+            manager.progress.lessonResumeStepIndices?[lesson.id] = nil
+        } else {
+            if manager.progress.lessonResumeActs == nil {
+                manager.progress.lessonResumeActs = [:]
+            }
+            if manager.progress.lessonResumeStepIndices == nil {
+                manager.progress.lessonResumeStepIndices = [:]
+            }
+            manager.progress.lessonResumeActs?[lesson.id] = currentAct.rawValue
+            manager.progress.lessonResumeStepIndices?[lesson.id] = currentStepIndex
+        }
+        manager.save()
     }
     
     // MARK: - Setup
@@ -127,6 +158,7 @@ public final class LessonCoordinator: ObservableObject {
             currentAct = nextAct
             currentStepIndex = 0
         }
+        saveProgressState()
     }
     
     private func finishLesson(onComplete: (Int) -> Void) {
@@ -137,6 +169,7 @@ public final class LessonCoordinator: ObservableObject {
         let exerciseBonus = (recognitionExercises.count + contextExercises.count) * 10
         self.xpEarned = baseXP + exerciseBonus
         
+        saveProgressState()
         onComplete(self.xpEarned)
     }
     

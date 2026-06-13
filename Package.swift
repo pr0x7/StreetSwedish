@@ -26,7 +26,10 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "StreetSwedish",
-            path: "StreetSwedish"
+            path: "StreetSwedish",
+            resources: [
+                .process("Assets.xcassets")
+            ]
         )
     ]
 )

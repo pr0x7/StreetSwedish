@@ -99,6 +99,8 @@ public struct UserProgress: Codable, Hashable {
     // Maps
     public var categoryProgressMap: [String: Double]    // categoryID: completionPercentage (0.0 to 1.0)
     public var moduleProgressMap: [String: ModuleProgress] // moduleID: ModuleProgress
+    public var lessonResumeActs: [String: Int]?
+    public var lessonResumeStepIndices: [String: Int]?
     
     public init(
         xp: Int = 0,
@@ -121,7 +123,9 @@ public struct UserProgress: Codable, Hashable {
         autoAdvanceDelay: Double = 0.8,
         isEnglishUI: Bool? = true,
         categoryProgressMap: [String: Double] = [:],
-        moduleProgressMap: [String: ModuleProgress] = [:]
+        moduleProgressMap: [String: ModuleProgress] = [:],
+        lessonResumeActs: [String: Int]? = [:],
+        lessonResumeStepIndices: [String: Int]? = [:]
     ) {
         self.xp = xp
         self.streak = streak
@@ -144,5 +148,7 @@ public struct UserProgress: Codable, Hashable {
         self.isEnglishUI = isEnglishUI
         self.categoryProgressMap = categoryProgressMap
         self.moduleProgressMap = moduleProgressMap
+        self.lessonResumeActs = lessonResumeActs
+        self.lessonResumeStepIndices = lessonResumeStepIndices
     }
 }

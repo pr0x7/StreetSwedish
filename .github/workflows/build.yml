@@ -39,39 +39,62 @@ jobs:
             echo "No .app bundle found! Creating a fallback app bundle wrapper..."
             mkdir -p Payload/StreetSwedish.app
             cp build/Build/Products/Release-iphoneos/StreetSwedish Payload/StreetSwedish.app/
-             echo '<?xml version="1.0" encoding="UTF-8"?>
-             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-             <plist version="1.0">
-             <dict>
-                 <key>CFBundleExecutable</key>
-                 <string>StreetSwedish</string>
-                 <key>CFBundleIdentifier</key>
-                 <string>com.pr0x7.StreetSwedish</string>
-                 <key>CFBundleName</key>
-                 <string>StreetSwedish</string>
-                 <key>CFBundlePackageType</key>
-                 <string>APPL</string>
-                 <key>CFBundleShortVersionString</key>
-                 <string>1.0.0</string>
-                 <key>CFBundleVersion</key>
-                 <string>1</string>
-                 <key>LSRequiresIPhoneOS</key>
-                 <true/>
-                 <key>MinimumOSVersion</key>
-                 <string>16.0</string>
-                 <key>CFBundleSupportedPlatforms</key>
-                 <array>
-                     <string>iPhoneOS</string>
-                 </array>
-                 <key>UIDeviceFamily</key>
-                 <array>
-                     <integer>1</integer>
-                 </array>
-                 <key>UILaunchScreen</key>
-                 <dict/>
-             </dict>
-             </plist>' > Payload/StreetSwedish.app/Info.plist
-           fi
+            
+            # Compile Assets (including AppIcon) using actool
+            echo "Compiling asset catalog..."
+            xcrun actool --compile Payload/StreetSwedish.app \
+              --platform iphoneos \
+              --minimum-deployment-target 16.0 \
+              --app-icon AppIcon \
+              --output-format xml1 \
+              StreetSwedish/Assets.xcassets
+            
+            echo "Writing Info.plist..."
+            echo '<?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>CFBundleExecutable</key>
+                <string>StreetSwedish</string>
+                <key>CFBundleIdentifier</key>
+                <string>com.pr0x7.StreetSwedish</string>
+                <key>CFBundleName</key>
+                <string>StreetSwedish</string>
+                <key>CFBundlePackageType</key>
+                <string>APPL</string>
+                <key>CFBundleShortVersionString</key>
+                <string>1.0.0</string>
+                <key>CFBundleVersion</key>
+                <string>1</string>
+                <key>LSRequiresIPhoneOS</key>
+                <true/>
+                <key>MinimumOSVersion</key>
+                <string>16.0</string>
+                <key>CFBundleSupportedPlatforms</key>
+                <array>
+                    <string>iPhoneOS</string>
+                </array>
+                <key>UIDeviceFamily</key>
+                <array>
+                    <integer>1</integer>
+                </array>
+                <key>UILaunchScreen</key>
+                <dict/>
+                <key>CFBundleIcons</key>
+                <dict>
+                    <key>CFBundlePrimaryIcon</key>
+                    <dict>
+                        <key>CFBundleIconFiles</key>
+                        <array>
+                            <string>AppIcon60x60</string>
+                        </array>
+                        <key>CFBundleIconName</key>
+                        <string>AppIcon</string>
+                    </dict>
+                </dict>
+            </dict>
+            </plist>' > Payload/StreetSwedish.app/Info.plist
+          fi
           zip -r StreetSwedish.ipa Payload
 
       - name: Upload IPA Artifact
