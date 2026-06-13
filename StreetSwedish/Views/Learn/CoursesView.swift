@@ -198,7 +198,7 @@ public struct CoursesView: View {
     }
     
     // MARK: - Lesson Node Button
-    private enum NodeStatus {
+    enum NodeStatus {
         case locked, active, completed
     }
     
