@@ -16,6 +16,8 @@ build/Build/Products/Release-iphoneos/StreetSwedish.dSYM/Contents/Info.plist
 === Files inside Payload/StreetSwedish.app ===
 Payload/StreetSwedish.app
 Payload/StreetSwedish.app/StreetSwedish
+Payload/StreetSwedish.app/StreetSwedish_StreetSwedish.bundle
+Payload/StreetSwedish.app/StreetSwedish_StreetSwedish.bundle/Info.plist
 Payload/StreetSwedish.app/Info.plist
 === Info.plist ===
 {
