@@ -136,18 +136,20 @@ public struct SFIVerbsView: View {
                         
                         Divider().background(Color.textMuted.opacity(0.2))
                         
-                        // Example
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(progressManager.loc("EXAMPLE", "EXEMPEL"))
+                        // Examples
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(progressManager.loc("EXAMPLES", "EXEMPEL"))
                                 .font(.sfRounded(size: 10, weight: .bold))
                                 .foregroundColor(.textMuted)
                                 .tracking(1.0)
-                            Text(verb.exampleSwedish)
-                                .font(.sfStandard(size: 14, weight: .semibold))
-                                .foregroundColor(.textPrimary)
-                            Text(verb.exampleEnglish)
-                                .font(.sfStandard(size: 12))
-                                .foregroundColor(.textSecondary)
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                verbExampleRow(label: progressManager.loc("Present", "Presens"), swedish: verb.exPresent, english: verb.exPresentEn)
+                                verbExampleRow(label: progressManager.loc("Past", "Preteritum"), swedish: verb.exPast, english: verb.exPastEn)
+                                if verb.exSupinum != "—" && !verb.exSupinum.isEmpty {
+                                    verbExampleRow(label: progressManager.loc("Perfect", "Supinum"), swedish: verb.exSupinum, english: verb.exSupinumEn)
+                                }
+                            }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(16)
@@ -174,6 +176,29 @@ public struct SFIVerbsView: View {
         .padding(.vertical, 4)
         .padding(.horizontal, 8)
         .background(Color.appSurfaceElevated)
+        .cornerRadius(8)
+    }
+    
+    private func verbExampleRow(label: String, swedish: String, english: String) -> some View {
+        HStack(alignment: .top, spacing: 8) {
+            Text(label)
+                .font(.sfRounded(size: 11, weight: .bold))
+                .foregroundColor(.textMuted)
+                .frame(width: 80, alignment: .leading)
+                .padding(.top, 2)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(swedish)
+                    .font(.sfStandard(size: 14, weight: .semibold))
+                    .foregroundColor(.textPrimary)
+                Text(english)
+                    .font(.sfStandard(size: 12))
+                    .foregroundColor(.textSecondary)
+            }
+            Spacer()
+        }
+        .padding(8)
+        .background(Color.appSurfaceElevated.opacity(0.5))
         .cornerRadius(8)
     }
 }

@@ -16,18 +16,20 @@ public struct PracticeView: View {
     public init() {}
     
     public var body: some View {
-        ZStack {
-            Color.appBackground
-                .ignoresSafeArea()
-            
-            if isReviewActive {
-                reviewGameplayView()
-            } else {
-                dashboardView()
+        NavigationStack {
+            ZStack {
+                Color.appBackground
+                    .ignoresSafeArea()
+                
+                if isReviewActive {
+                    reviewGameplayView()
+                } else {
+                    dashboardView()
+                }
             }
+            .navigationTitle(progressManager.loc("Practice", "Öva"))
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle(progressManager.loc("Practice", "Öva"))
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     // MARK: - 1. Dashboard View

@@ -292,26 +292,26 @@ public struct BossLevel: Codable, Identifiable, Hashable {
 // MARK: - Swedish Verb Conjugation
 public struct SwedishVerb: Codable, Identifiable, Hashable {
     public let id: String
-    public let infinitive: String      // att vara
-    public let present: String         // är
-    public let past: String            // var
-    public let supinum: String         // varit (past participle)
-    public let imperative: String      // var!
-    public let english: String         // to be
-    public let group: String           // "Irregular", "Group 1", etc.
-    public let exampleSwedish: String
-    public let exampleEnglish: String
+    public let infinitive: String
+    public let present: String
+    public let past: String
+    public let supinum: String
+    public let imperative: String
+    public let english: String
+    public let group: String
+    public let exPresent: String       // "Jag äter lunch."
+    public let exPresentEn: String     // "I eat lunch."
+    public let exPast: String          // "Jag åt lunch."
+    public let exPastEn: String        // "I ate lunch."
+    public let exSupinum: String       // "Jag har ätit lunch."
+    public let exSupinumEn: String     // "I have eaten lunch."
     
-    public init(id: String, infinitive: String, present: String, past: String, supinum: String, imperative: String, english: String, group: String, exampleSwedish: String, exampleEnglish: String) {
-        self.id = id
-        self.infinitive = infinitive
-        self.present = present
-        self.past = past
-        self.supinum = supinum
-        self.imperative = imperative
-        self.english = english
-        self.group = group
-        self.exampleSwedish = exampleSwedish
-        self.exampleEnglish = exampleEnglish
+    public init(id: String, infinitive: String, present: String, past: String, supinum: String, imperative: String, english: String, group: String,
+                exPresent: String, exPresentEn: String, exPast: String, exPastEn: String, exSupinum: String, exSupinumEn: String) {
+        self.id = id; self.infinitive = infinitive; self.present = present; self.past = past
+        self.supinum = supinum; self.imperative = imperative; self.english = english; self.group = group
+        self.exPresent = exPresent; self.exPresentEn = exPresentEn
+        self.exPast = exPast; self.exPastEn = exPastEn
+        self.exSupinum = exSupinum; self.exSupinumEn = exSupinumEn
     }
 }
