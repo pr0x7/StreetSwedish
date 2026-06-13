@@ -31,7 +31,37 @@ jobs:
       - name: Create IPA Package
         run: |
           mkdir Payload
-          cp -r build/Build/Products/Release-iphoneos/StreetSwedish.app Payload/
+          APP_PATH=$(find build -name "*.app" -type d -print -quit)
+          if [ -n "$APP_PATH" ]; then
+            echo "Found app bundle at: $APP_PATH"
+            cp -r "$APP_PATH" Payload/
+          else
+            echo "No .app bundle found! Creating a fallback app bundle wrapper..."
+            mkdir -p Payload/StreetSwedish.app
+            cp build/Build/Products/Release-iphoneos/StreetSwedish Payload/StreetSwedish.app/
+            echo '<?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>CFBundleExecutable</key>
+                <string>StreetSwedish</string>
+                <key>CFBundleIdentifier</key>
+                <string>com.pr0x7.StreetSwedish</string>
+                <key>CFBundleName</key>
+                <string>StreetSwedish</string>
+                <key>CFBundlePackageType</key>
+                <string>APPL</string>
+                <key>CFBundleShortVersionString</key>
+                <string>1.0.0</string>
+                <key>CFBundleVersion</key>
+                <string>1</string>
+                <key>LSRequiresIPhoneOS</key>
+                <true/>
+                <key>MinimumOSVersion</key>
+                <string>16.0</string>
+            </dict>
+            </plist>' > Payload/StreetSwedish.app/Info.plist
+          fi
           zip -r StreetSwedish.ipa Payload
 
       - name: Upload IPA Artifact
