@@ -126,6 +126,8 @@ public struct CoursesView: View {
                 categoryTab(id: "social", name: progressManager.loc("Social / AW", "Socialt / AW"), icon: "wineglass.fill", color: .accentSocial)
                 categoryTab(id: "dating", name: progressManager.loc("Dating", "Dating"), icon: "heart.fill", color: .accentDating)
                 categoryTab(id: "swears", name: progressManager.loc("Swears", "Svordomar"), icon: "exclamationmark.bubble.fill", color: .accentSwearing)
+                categoryTab(id: "ordering", name: progressManager.loc("Ordering", "Beställning"), icon: "cart.fill", color: .primaryBlue)
+                categoryTab(id: "everyday", name: progressManager.loc("Everyday", "Vardagen"), icon: "sun.max.fill", color: .primaryGold)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)

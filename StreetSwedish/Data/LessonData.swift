@@ -112,6 +112,28 @@ public struct LessonData {
             elitePhraseIDs: ["elite_swears_1"],
             unlockRequirement: nil,
             wordCount: 6
+        ),
+        Module(
+            id: "bestallning",
+            categoryID: "ordering",
+            title: "Beställning",
+            subtitle: "Ordering food, shopping & paying",
+            lessonIDs: ["ordering_restaurant", "ordering_shopping", "ordering_delivery"],
+            bossLevelID: "boss_bestallning",
+            elitePhraseIDs: [],
+            unlockRequirement: nil,
+            wordCount: 20
+        ),
+        Module(
+            id: "vardagen",
+            categoryID: "everyday",
+            title: "Vardagen",
+            subtitle: "Numbers, days, food, directions & essentials",
+            lessonIDs: ["everyday_numbers", "everyday_food", "everyday_getting_around", "everyday_people"],
+            bossLevelID: "boss_vardagen",
+            elitePhraseIDs: [],
+            unlockRequirement: nil,
+            wordCount: 80
         )
     ]
     
@@ -1565,7 +1587,7 @@ public struct LessonData {
         ex, sambo, singel, ghosta,
         fan, javlar, helvete,
         skit, skitstovel, satan
-    ]
+    ] + expansionVocab
     
     // MARK: - Dialogues
     public static let techDialogues: [Dialogue] = [
@@ -2150,7 +2172,67 @@ public struct LessonData {
                 )
             ],
             characterIDs: ["erik", "karin"]
-        )
+        ),
+        
+        // --- ORDERING MODULE LESSONS ---
+        Lesson(id: "ordering_restaurant", moduleID: "bestallning", title: "At the Restaurant", estimatedMinutes: 12,
+               vocabItems: [v_bestalla2, v_notan, v_meny, v_tamed, v_atahar, v_bord, v_servitor],
+               culturalContextCard: CulturalContextCard(bodyText: "In Sweden, tipping is not expected but appreciated. You ask for 'notan' when ready to pay. 'Swisha' is the most common payment method.", illustrationName: "restaurant_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ord1_1", type: .multipleChoice, prompt: "How do you ask for the bill?", correctAnswer: "Kan jag få notan?", options: ["Kan jag få notan?", "Var är menyn?", "Jag vill beställa.", "Tack så mycket."]),
+                Exercise(id: "ex_ord1_2", type: .multipleChoice, prompt: "What does 'ta med' mean?", correctAnswer: "takeaway", options: ["eat here", "takeaway", "pay", "order"])
+               ], characterIDs: ["maja"]),
+        Lesson(id: "ordering_shopping", moduleID: "bestallning", title: "At the Store", estimatedMinutes: 10,
+               vocabItems: [v_kassa, v_pase, v_rea, v_prova, v_storlek, v_billigt, v_dyrt],
+               culturalContextCard: CulturalContextCard(bodyText: "Swedish stores charge for bags (påsar). Sales are called 'rea' and happen especially after Christmas and in summer.", illustrationName: "shopping_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ord2_1", type: .multipleChoice, prompt: "What is 'rea'?", correctAnswer: "sale/discount", options: ["receipt", "sale/discount", "bag", "size"]),
+                Exercise(id: "ex_ord2_2", type: .multipleChoice, prompt: "What does 'dyrt' mean?", correctAnswer: "expensive", options: ["cheap", "expensive", "free", "new"])
+               ], characterIDs: ["erik"]),
+        Lesson(id: "ordering_delivery", moduleID: "bestallning", title: "Services & Delivery", estimatedMinutes: 10,
+               vocabItems: [v_kvitto, v_kort, v_kontant, v_swish, v_leverans, v_dricks],
+               culturalContextCard: CulturalContextCard(bodyText: "Swish is Sweden's mobile payment app used by nearly everyone. Cash is increasingly rare — many shops are 'kontantfritt' (cashless).", illustrationName: "delivery_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ord3_1", type: .multipleChoice, prompt: "What is 'swisha'?", correctAnswer: "to pay via mobile app", options: ["to call", "to pay via mobile app", "to text", "to order"]),
+                Exercise(id: "ex_ord3_2", type: .multipleChoice, prompt: "What does 'kontant' mean?", correctAnswer: "cash", options: ["card", "cash", "free", "receipt"])
+               ], characterIDs: ["maja"]),
+
+        // --- EVERYDAY MODULE LESSONS ---
+        Lesson(id: "everyday_numbers", moduleID: "vardagen", title: "Numbers & Time", estimatedMinutes: 15,
+               vocabItems: [v_en2, v_tva, v_tre, v_fyra, v_fem, v_sex, v_sju, v_atta2, v_nio, v_tio, v_hundra, v_tusen, v_idag, v_igår, v_imorgon, v_klockan,
+                            v_mandag, v_tisdag, v_onsdag, v_torsdag, v_fredag, v_lordag, v_sondag],
+               culturalContextCard: CulturalContextCard(bodyText: "Swedes use a 24-hour clock. 'Klockan 15' means 3 PM. Days of the week are NOT capitalized in Swedish.", illustrationName: "numbers_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ev1_1", type: .multipleChoice, prompt: "What is 'åtta'?", correctAnswer: "eight", options: ["six", "seven", "eight", "nine"]),
+                Exercise(id: "ex_ev1_2", type: .multipleChoice, prompt: "What day is 'fredag'?", correctAnswer: "Friday", options: ["Monday", "Wednesday", "Friday", "Sunday"])
+               ], characterIDs: ["maja"]),
+        Lesson(id: "everyday_food", moduleID: "vardagen", title: "Food & Drinks", estimatedMinutes: 12,
+               vocabItems: [v_kaffe, v_te, v_vatten, v_brod, v_ost, v_kott, v_fisk, v_gront, v_frukt, v_glass, v_godis, v_mat,
+                            v_sol, v_regn, v_sno, v_kallt, v_varmt, v_vader],
+               culturalContextCard: CulturalContextCard(bodyText: "Fika culture revolves around coffee. 'Lördagsgodis' (Saturday candy) is a tradition where children eat sweets only on Saturdays.", illustrationName: "food_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ev2_1", type: .multipleChoice, prompt: "What is 'bröd'?", correctAnswer: "bread", options: ["butter", "bread", "cheese", "milk"]),
+                Exercise(id: "ex_ev2_2", type: .multipleChoice, prompt: "What does 'snö' mean?", correctAnswer: "snow", options: ["sun", "rain", "snow", "wind"])
+               ], characterIDs: ["erik"]),
+        Lesson(id: "everyday_getting_around", moduleID: "vardagen", title: "Getting Around", estimatedMinutes: 12,
+               vocabItems: [v_hoger, v_vanster, v_rakt, v_buss, v_tag, v_tunnelbana, v_bil, v_cykel, v_hallplats, v_flygplats,
+                            v_rod, v_bla, v_gron, v_gul, v_vit, v_svart],
+               culturalContextCard: CulturalContextCard(bodyText: "Stockholm's public transport (SL) uses zones. Buy an SL card or use the SL app. The tunnelbana has beautiful art stations.", illustrationName: "transport_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ev3_1", type: .multipleChoice, prompt: "What is 'tunnelbana'?", correctAnswer: "subway/metro", options: ["bus", "train", "subway/metro", "taxi"]),
+                Exercise(id: "ex_ev3_2", type: .multipleChoice, prompt: "What color is 'blå'?", correctAnswer: "blue", options: ["red", "green", "blue", "yellow"])
+               ], characterIDs: ["linh"]),
+        Lesson(id: "everyday_people", moduleID: "vardagen", title: "People & Essentials", estimatedMinutes: 15,
+               vocabItems: [v_mamma, v_pappa, v_barn, v_kompis, v_familj, v_flickvan, v_pojkvan, v_granne,
+                            v_bra, v_daligt, v_stor, v_liten, v_snabb, v_langsam, v_ny, v_gammal,
+                            v_tack, v_ursakt, v_hej, v_hejda, v_ja, v_nej, v_kanske,
+                            v_var, v_hur, v_nar, v_hem, v_skola, v_sjukhus, v_apotek],
+               culturalContextCard: CulturalContextCard(bodyText: "Swedish culture values 'lagom' — not too much, not too little. Greetings are casual: 'hej' works everywhere, 'hejdå' for goodbye.", illustrationName: "people_illustration"),
+               dialogues: [], exercises: [
+                Exercise(id: "ex_ev4_1", type: .multipleChoice, prompt: "What does 'kompis' mean?", correctAnswer: "friend/buddy", options: ["colleague", "friend/buddy", "neighbor", "boss"]),
+                Exercise(id: "ex_ev4_2", type: .multipleChoice, prompt: "How do you say 'thank you'?", correctAnswer: "tack", options: ["hej", "tack", "ja", "nej"]),
+                Exercise(id: "ex_ev4_3", type: .fillBlank, prompt: "Hej, ___ mår du?", correctAnswer: "hur", options: ["var", "hur", "när", "vad"])
+               ], characterIDs: ["maja", "erik"])
     ]
     
     // MARK: - Boss Levels
@@ -2223,13 +2305,37 @@ public struct LessonData {
         partialThreshold: 0.6
     )
     
+    public static let bossBestallning = BossLevel(
+        id: "boss_bestallning",
+        moduleID: "bestallning",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 6, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 4, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+
+    public static let bossVardagen = BossLevel(
+        id: "boss_vardagen",
+        moduleID: "vardagen",
+        rounds: [
+            BossRound(number: 1, type: .speedRecognition, itemCount: 10, timePerItemSeconds: 3.0),
+            BossRound(number: 2, type: .translationSprint, itemCount: 6, timePerItemSeconds: 12.0)
+        ],
+        passThreshold: 0.8,
+        partialThreshold: 0.6
+    )
+    
     public static let allBossLevels: [BossLevel] = [
         bossArbeteTech,
         bossGatansSprak,
         bossSmsSocial,
         bossSocialtBar,
         bossDating,
-        bossSvordomar
+        bossSvordomar,
+        bossBestallning,
+        bossVardagen
     ]
     
     // MARK: - Helper getters

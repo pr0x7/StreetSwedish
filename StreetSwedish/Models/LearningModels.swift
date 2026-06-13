@@ -288,3 +288,30 @@ public struct BossLevel: Codable, Identifiable, Hashable {
         self.partialThreshold = partialThreshold
     }
 }
+
+// MARK: - Swedish Verb Conjugation
+public struct SwedishVerb: Codable, Identifiable, Hashable {
+    public let id: String
+    public let infinitive: String      // att vara
+    public let present: String         // är
+    public let past: String            // var
+    public let supinum: String         // varit (past participle)
+    public let imperative: String      // var!
+    public let english: String         // to be
+    public let group: String           // "Irregular", "Group 1", etc.
+    public let exampleSwedish: String
+    public let exampleEnglish: String
+    
+    public init(id: String, infinitive: String, present: String, past: String, supinum: String, imperative: String, english: String, group: String, exampleSwedish: String, exampleEnglish: String) {
+        self.id = id
+        self.infinitive = infinitive
+        self.present = present
+        self.past = past
+        self.supinum = supinum
+        self.imperative = imperative
+        self.english = english
+        self.group = group
+        self.exampleSwedish = exampleSwedish
+        self.exampleEnglish = exampleEnglish
+    }
+}

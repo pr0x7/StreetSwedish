@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct GrammarView: View {
+public struct SFIGrammarView: View {
     @EnvironmentObject var progressManager: ProgressManager
     
     @State private var selectedTopic = 0
@@ -8,8 +8,7 @@ public struct GrammarView: View {
     public init() {}
     
     public var body: some View {
-        NavigationStack {
-            ZStack {
+        ZStack {
                 Color.appBackground
                     .ignoresSafeArea()
                 
@@ -46,10 +45,9 @@ public struct GrammarView: View {
                         .padding(20)
                     }
                 }
-            }
-            .navigationTitle(progressManager.loc("Swedish Grammar", "Svensk Grammatik"))
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationTitle(progressManager.loc("Swedish Grammar", "Svensk Grammatik"))
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private func topicTab(index: Int, title: String, icon: String) -> some View {

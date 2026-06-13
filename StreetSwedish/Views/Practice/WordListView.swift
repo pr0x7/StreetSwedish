@@ -69,69 +69,77 @@ public struct WordListView: View {
     // MARK: - Filter UI
     private func filterSection() -> some View {
         VStack(spacing: 8) {
-            HStack(spacing: 8) {
-                // Category filter menu
-                Menu {
-                    Button("Alla kategorier", action: { selectedCategory = "all" })
-                    Button("Jobb & Tech", action: { selectedCategory = "work_tech" })
-                    Button("Gatans Språk", action: { selectedCategory = "street" })
-                } label: {
-                    HStack {
-                        Text(categoryLabelName())
-                        Image(systemName: "chevron.down")
-                            .font(.caption2)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    // Category filter menu
+                    Menu {
+                        Button("Alla kategorier", action: { selectedCategory = "all" })
+                        Button("Jobb & Tech", action: { selectedCategory = "work_tech" })
+                        Button("Gatans Språk", action: { selectedCategory = "street" })
+                        Button("SMS-Slang", action: { selectedCategory = "sms" })
+                        Button("Socialt / AW", action: { selectedCategory = "social" })
+                        Button("Dating", action: { selectedCategory = "dating" })
+                        Button("Svordomar", action: { selectedCategory = "swears" })
+                        Button("Beställning", action: { selectedCategory = "ordering" })
+                        Button("Vardagen", action: { selectedCategory = "everyday" })
+                    } label: {
+                        HStack {
+                            Text(categoryLabelName())
+                            Image(systemName: "chevron.down")
+                                .font(.caption2)
+                        }
+                        .font(.sfRounded(size: 13, weight: .bold))
+                        .foregroundColor(.textPrimary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.appSurfaceElevated)
+                        .cornerRadius(12)
                     }
-                    .font(.sfRounded(size: 13, weight: .bold))
-                    .foregroundColor(.textPrimary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.appSurfaceElevated)
-                    .cornerRadius(12)
+                    
+                    // Register filter menu
+                    Menu {
+                        Button("Alla stilnivåer", action: { selectedRegister = "all" })
+                        ForEach(RegisterLevel.allCases, id: \.self) { level in
+                            Button(level.displayName, action: { selectedRegister = level.rawValue })
+                        }
+                    } label: {
+                        HStack {
+                            Text(registerLabelName())
+                            Image(systemName: "chevron.down")
+                                .font(.caption2)
+                        }
+                        .font(.sfRounded(size: 13, weight: .bold))
+                        .foregroundColor(.textPrimary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.appSurfaceElevated)
+                        .cornerRadius(12)
+                    }
+                    
+                    // Stage filter menu
+                    Menu {
+                        Button("Alla nivåer", action: { selectedStage = "all" })
+                        ForEach(0...5, id: \.self) { stage in
+                            Button("Nivå \(stage)", action: { selectedStage = String(stage) })
+                        }
+                    } label: {
+                        HStack {
+                            Text(stageLabelName())
+                            Image(systemName: "chevron.down")
+                                .font(.caption2)
+                        }
+                        .font(.sfRounded(size: 13, weight: .bold))
+                        .foregroundColor(.textPrimary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.appSurfaceElevated)
+                        .cornerRadius(12)
+                    }
+                    
+                    Spacer()
                 }
-                
-                // Register filter menu
-                Menu {
-                    Button("Alla stilnivåer", action: { selectedRegister = "all" })
-                    ForEach(RegisterLevel.allCases, id: \.self) { level in
-                        Button(level.displayName, action: { selectedRegister = level.rawValue })
-                    }
-                } label: {
-                    HStack {
-                        Text(registerLabelName())
-                        Image(systemName: "chevron.down")
-                            .font(.caption2)
-                    }
-                    .font(.sfRounded(size: 13, weight: .bold))
-                    .foregroundColor(.textPrimary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.appSurfaceElevated)
-                    .cornerRadius(12)
-                }
-                
-                // Stage filter menu
-                Menu {
-                    Button("Alla nivåer", action: { selectedStage = "all" })
-                    ForEach(0...5, id: \.self) { stage in
-                        Button("Nivå \(stage)", action: { selectedStage = String(stage) })
-                    }
-                } label: {
-                    HStack {
-                        Text(stageLabelName())
-                        Image(systemName: "chevron.down")
-                            .font(.caption2)
-                    }
-                    .font(.sfRounded(size: 13, weight: .bold))
-                    .foregroundColor(.textPrimary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.appSurfaceElevated)
-                    .cornerRadius(12)
-                }
-                
-                Spacer()
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
             .padding(.top, 12)
             .padding(.bottom, 8)
             
@@ -219,17 +227,13 @@ public struct WordListView: View {
             }
         }
         
-        // Category Filter
+        // Category Filter — resolve vocab through lesson → module → categoryID chain
         if selectedCategory != "all" {
-            // Note: Arbete & Tech module ID matches "arbete_tech" which correlates to work_tech
-            if selectedCategory == "work_tech" {
-                items = items.filter { item in
-                    // Items from the first lessons belong to work_tech
-                    LessonData.allLessons.prefix(3).flatMap { $0.vocabItems }.contains(where: { $0.id == item.id })
-                }
-            } else {
-                items = [] // Others not loaded yet
-            }
+            let modulesInCategory = LessonData.allModules.filter { $0.categoryID == selectedCategory }
+            let moduleIDs = Set(modulesInCategory.map { $0.id })
+            let lessonsInCategory = LessonData.allLessons.filter { moduleIDs.contains($0.moduleID) }
+            let vocabIDs = Set(lessonsInCategory.flatMap { $0.vocabItems.map { $0.id } })
+            items = items.filter { vocabIDs.contains($0.id) }
         }
         
         // Register Filter
@@ -254,6 +258,12 @@ public struct WordListView: View {
         switch selectedCategory {
         case "work_tech": return "Jobb & Tech"
         case "street": return "Gatans Språk"
+        case "sms": return "SMS-Slang"
+        case "social": return "Socialt / AW"
+        case "dating": return "Dating"
+        case "swears": return "Svordomar"
+        case "ordering": return "Beställning"
+        case "everyday": return "Vardagen"
         default: return "Kategori"
         }
     }

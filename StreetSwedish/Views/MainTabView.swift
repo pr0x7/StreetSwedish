@@ -22,9 +22,9 @@ public struct MainTabView: View {
                 }
                 .tag(1)
             
-            GrammarView()
+            SFIHubView()
                 .tabItem {
-                    Label(progressManager.loc("Grammar", "Grammatik"), systemImage: "text.alignleft")
+                    Label("SFI", systemImage: "graduationcap.fill")
                 }
                 .tag(2)
             
