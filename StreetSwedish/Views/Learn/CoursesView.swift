@@ -549,6 +549,7 @@ struct LessonDetailSheet: View {
                                             .padding(14)
                                             .background(Color.appSurface)
                                         }
+                                        .buttonStyle(.plain)
                                         
                                         // Expanded details
                                         if expandedVocabIDs.contains(item.id) {
@@ -660,26 +661,28 @@ struct LessonDetailSheet: View {
     
     @ViewBuilder
     private func conjugationRow(label: String, form: String, example: String, exampleEn: String) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            HStack {
-                Text(label)
-                    .font(.sfRounded(size: 11, weight: .bold))
-                    .foregroundColor(.textMuted)
-                    .frame(width: 80, alignment: .leading)
-                
-                Text(form)
-                    .font(.sfRounded(size: 13, weight: .bold))
-                    .foregroundColor(.primaryGold)
-                
-                Spacer()
+        if form != "—" {
+            VStack(alignment: .leading, spacing: 2) {
+                HStack {
+                    Text(label)
+                        .font(.sfRounded(size: 11, weight: .bold))
+                        .foregroundColor(.textMuted)
+                        .frame(width: 80, alignment: .leading)
+                    
+                    Text(form)
+                        .font(.sfRounded(size: 13, weight: .bold))
+                        .foregroundColor(.primaryGold)
+                    
+                    Spacer()
+                }
+                if !example.isEmpty && example != "—" {
+                    Text("\"\(example)\" — \(exampleEn)")
+                        .font(.sfStandard(size: 11))
+                        .foregroundColor(.textSecondary)
+                        .padding(.leading, 80)
+                }
             }
-            if !example.isEmpty {
-                Text("\"\(example)\" — \(exampleEn)")
-                    .font(.sfStandard(size: 11))
-                    .foregroundColor(.textSecondary)
-                    .padding(.leading, 80)
-            }
+            .padding(.vertical, 2)
         }
-        .padding(.vertical, 2)
     }
 }
