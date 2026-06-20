@@ -165,6 +165,7 @@ public enum ExerciseType: String, Codable, CaseIterable, Hashable {
     case errorCorrection = "errorCorrection"
     case storyQuiz = "storyQuiz"
     case sentenceBuilder = "sentenceBuilder"
+    case grammarParsing = "grammarParsing"
 }
 
 public struct Exercise: Codable, Identifiable, Hashable {
@@ -175,6 +176,8 @@ public struct Exercise: Codable, Identifiable, Hashable {
     public let options: [String]
     public let words: [String] // Used for wordOrder, sentenceBuilder, etc.
     public let hint: String?
+    public let grammaticalBreakdown: String?
+    public let grammarRule: String?
     
     public init(
         id: String,
@@ -183,7 +186,9 @@ public struct Exercise: Codable, Identifiable, Hashable {
         correctAnswer: String,
         options: [String] = [],
         words: [String] = [],
-        hint: String? = nil
+        hint: String? = nil,
+        grammaticalBreakdown: String? = nil,
+        grammarRule: String? = nil
     ) {
         self.id = id
         self.type = type
@@ -192,6 +197,8 @@ public struct Exercise: Codable, Identifiable, Hashable {
         self.options = options
         self.words = words
         self.hint = hint
+        self.grammaticalBreakdown = grammaticalBreakdown
+        self.grammarRule = grammarRule
     }
 }
 
