@@ -415,6 +415,8 @@ struct LessonDetailSheet: View {
     var onStart: (Lesson) -> Void
     var onResetAndStart: (Lesson) -> Void
     
+    @State private var selectedTab: Int = 0 // 0: Word List, 1: Study Guide
+    
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea()
@@ -437,45 +439,63 @@ struct LessonDetailSheet: View {
                         .tracking(1.5)
                 }
                 
-                // Words list
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(progressManager.loc("VOCABULARY TO LEARN", "ORD DU LÄR DIG"))
-                        .font(.sfRounded(size: 11, weight: .bold))
-                        .foregroundColor(.textSecondary)
-                        .tracking(1.0)
-                    
-                    ScrollView(.vertical, showsIndicators: true) {
-                        VStack(spacing: 8) {
-                            ForEach(lesson.vocabItems, id: \.id) { item in
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(item.swedish)
-                                            .font(.sfRounded(size: 16, weight: .bold))
-                                            .foregroundColor(.primaryGold)
-                                        Text(item.english)
-                                            .font(.sfStandard(size: 13))
-                                            .foregroundColor(.textSecondary)
+                Picker("", selection: $selectedTab) {
+                    Text(progressManager.loc("Word List", "Ordlista")).tag(0)
+                    Text(progressManager.loc("Study Guide", "Studieguide")).tag(1)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 20)
+                
+                if selectedTab == 0 {
+                    // Words list
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(progressManager.loc("VOCABULARY TO LEARN", "ORD DU LÄR DIG"))
+                            .font(.sfRounded(size: 11, weight: .bold))
+                            .foregroundColor(.textSecondary)
+                            .tracking(1.0)
+                        
+                        ScrollView(.vertical, showsIndicators: true) {
+                            VStack(spacing: 8) {
+                                ForEach(lesson.vocabItems, id: \.id) { item in
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(item.swedish)
+                                                .font(.sfRounded(size: 16, weight: .bold))
+                                                .foregroundColor(.primaryGold)
+                                            Text(item.english)
+                                                .font(.sfStandard(size: 13))
+                                                .foregroundColor(.textSecondary)
+                                        }
+                                        Spacer()
+                                        
+                                        // Sub-badge for register
+                                        Text(item.registerLabel.rawValue.capitalized)
+                                            .font(.sfRounded(size: 10, weight: .bold))
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 4)
+                                            .background(Color.appSurfaceElevated)
+                                            .foregroundColor(.textMuted)
+                                            .cornerRadius(8)
                                     }
-                                    Spacer()
-                                    
-                                    // Sub-badge for register
-                                    Text(item.registerLabel.rawValue.capitalized)
-                                        .font(.sfRounded(size: 10, weight: .bold))
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color.appSurfaceElevated)
-                                        .foregroundColor(.textMuted)
-                                        .cornerRadius(8)
+                                    .padding(12)
+                                    .background(Color.appSurface)
+                                    .cornerRadius(12)
                                 }
-                                .padding(12)
-                                .background(Color.appSurface)
-                                .cornerRadius(12)
                             }
                         }
+                        .frame(maxHeight: 200)
+                    }
+                    .padding(.horizontal, 20)
+                } else {
+                    // Temporary placeholder content for Study Guide
+                    ScrollView {
+                        Text("Study Guide Content")
+                            .foregroundColor(.textSecondary)
+                            .padding()
                     }
                     .frame(maxHeight: 200)
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
                 
                 // Resume info / Status
                 let hasResumeState = progressManager.progress.lessonResumeActs?[lesson.id] != nil
