@@ -1738,7 +1738,18 @@ public struct LessonData {
             ),
             dialogues: [techDialogues[0]],
             exercises: lesson1Exercises,
-            characterIDs: ["karin", "maja"]
+            characterIDs: ["karin", "maja"],
+            grammarOverview: """
+            VÄLKOMMEN TILL TECH-BASICS!
+            
+            Grammar Focus: The V2 Word Order Rule
+            In Swedish, the verb must always be the second element in a declarative sentence. If you start a sentence with a time or place adverbial, the subject and verb invert:
+            - Normal: "Vi tar (verb) det på vår standup klockan nio."
+            - Inverted: "Klockan nio tar (verb) vi (subject) det på vår standup."
+            
+            Cultural Vibe: Konsensus & Fika
+            Corporate Sweden values equality and flat hierarchies. If a meeting drags on, use the verb 'ta det offline' to politely defer details.
+            """
         ),
         Lesson(
             id: "workplace_swag",

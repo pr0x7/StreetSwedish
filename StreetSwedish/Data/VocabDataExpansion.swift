@@ -2,22 +2,22 @@ import Foundation
 
 // Compact vocab helper
 extension LessonData {
-    static func q(_ id: String, _ sv: String, _ en: String, _ pron: String, _ exSv: String, _ exEn: String, _ hook: String, _ reg: RegisterLevel) -> VocabItem {
+    static func q(_ id: String, _ sv: String, _ en: String, _ pron: String, _ exSv: String, _ exEn: String, _ hook: String, _ reg: RegisterLevel, _ grammarNote: String? = nil) -> VocabItem {
         VocabItem(id: id, swedish: sv, english: en, pronunciation: pron,
                   exampleSentences: [ExampleSentence(swedish: exSv, english: exEn, registerLabel: reg)],
-                  soundHook: hook, visualHook: "", cultureHook: "", registerLabel: reg)
+                  soundHook: hook, visualHook: "", cultureHook: "", registerLabel: reg, grammarNote: grammarNote)
     }
 
     // MARK: - Ordering & Shopping Vocab
     static let v_bestalla2 = q("vocab_bestalla", "beställa", "to order", "beh-stel-ah", "Jag vill beställa mat.", "I want to order food.", "bestell", .neutral)
-    static let v_notan = q("vocab_notan", "notan", "the bill/check", "noo-tan", "Kan jag få notan?", "Can I get the bill?", "note-an", .neutral)
+    static let v_notan = q("vocab_notan", "notan", "the bill/check", "noo-tan", "Kan jag få notan?", "Can I get the bill?", "note-an", .neutral, "N-noun (en nota). Definite singular form. Plural: notorna.")
     static let v_meny = q("vocab_meny", "meny", "menu", "meh-ny", "Kan jag se menyn?", "Can I see the menu?", "menu", .neutral)
     static let v_tamed = q("vocab_tamed", "ta med", "takeaway", "tah med", "Jag vill ta med.", "I want takeaway.", "take-med", .neutral)
     static let v_atahar = q("vocab_atahar", "äta här", "eat here", "eh-tah hair", "Vi vill äta här.", "We want to eat here.", "eat-here", .neutral)
     static let v_bord = q("vocab_bord", "bord", "table", "boord", "Ett bord för två, tack.", "A table for two, please.", "board", .neutral)
     static let v_servitor = q("vocab_servitor", "servitör", "waiter", "ser-vi-tur", "Ursäkta, servitör!", "Excuse me, waiter!", "server", .neutral)
     static let v_dricks = q("vocab_dricks", "dricks", "tip", "dricks", "Dricks ingår inte.", "Tip is not included.", "drinks", .neutral)
-    static let v_kvitto = q("vocab_kvitto", "kvitto", "receipt", "kvit-oh", "Kan jag få kvittot?", "Can I get the receipt?", "quit-oh", .neutral)
+    static let v_kvitto = q("vocab_kvitto", "kvitto", "receipt", "kvit-oh", "Kan jag få kvittot?", "Can I get the receipt?", "quit-oh", .neutral, "T-noun (ett kvitto). Indefinite singular. Plural: kvitton. Definite: kvittot.")
     static let v_kassa = q("vocab_kassa", "kassa", "checkout/register", "kas-ah", "Betala i kassan.", "Pay at the register.", "casa", .neutral)
     static let v_pase = q("vocab_pase", "påse", "bag", "paw-seh", "Vill du ha en påse?", "Do you want a bag?", "posse", .neutral)
     static let v_rea = q("vocab_rea", "rea", "sale/discount", "reh-ah", "Det är rea på ICA.", "There is a sale at ICA.", "ray-ah", .informal)
