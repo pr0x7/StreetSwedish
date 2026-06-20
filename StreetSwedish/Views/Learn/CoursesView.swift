@@ -416,6 +416,7 @@ struct LessonDetailSheet: View {
     var onResetAndStart: (Lesson) -> Void
     
     @State private var selectedTab: Int = 0 // 0: Word List, 1: Study Guide
+    @State private var expandedVocabIDs: Set<String> = []
     
     var body: some View {
         ZStack {
@@ -487,14 +488,117 @@ struct LessonDetailSheet: View {
                     }
                     .padding(.horizontal, 20)
                 } else {
-                    // Temporary placeholder content for Study Guide
-                    ScrollView {
-                        Text("Study Guide Content")
-                            .foregroundColor(.textSecondary)
-                            .padding()
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack(spacing: 20) {
+                            // 1. Grammar Overview Card
+                            if let overview = lesson.grammarOverview {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(progressManager.loc("GRAMMAR OVERVIEW", "GRAMMATISK ÖVERSIKT"))
+                                        .font(.sfRounded(size: 11, weight: .bold))
+                                        .foregroundColor(.primaryGold)
+                                        .tracking(1.5)
+                                    
+                                    Text(overview)
+                                        .font(.sfStandard(size: 14))
+                                        .foregroundColor(.textPrimary)
+                                        .lineSpacing(4)
+                                }
+                                .padding(16)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.appSurface)
+                                .cornerRadius(16)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.primaryGold.opacity(0.2), lineWidth: 1.5)
+                                )
+                            }
+                            
+                            // 2. Expandable Vocab Cards
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(progressManager.loc("DETAILED BREAKDOWNS", "DETALJERAD ANALYS"))
+                                    .font(.sfRounded(size: 11, weight: .bold))
+                                    .foregroundColor(.textSecondary)
+                                    .tracking(1.0)
+                                
+                                ForEach(lesson.vocabItems, id: \.id) { item in
+                                    VStack(spacing: 0) {
+                                        // Header button
+                                        Button(action: {
+                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                                if expandedVocabIDs.contains(item.id) {
+                                                    expandedVocabIDs.remove(item.id)
+                                                } else {
+                                                    expandedVocabIDs.insert(item.id)
+                                                }
+                                            }
+                                        }) {
+                                            HStack {
+                                                VStack(alignment: .leading, spacing: 2) {
+                                                    Text(item.swedish)
+                                                        .font(.sfRounded(size: 16, weight: .bold))
+                                                        .foregroundColor(.primaryGold)
+                                                    Text(item.english)
+                                                        .font(.sfStandard(size: 13))
+                                                        .foregroundColor(.textSecondary)
+                                                }
+                                                Spacer()
+                                                Image(systemName: "chevron.down")
+                                                    .foregroundColor(.textMuted)
+                                                    .rotationEffect(expandedVocabIDs.contains(item.id) ? .degrees(180) : .degrees(0))
+                                            }
+                                            .padding(14)
+                                            .background(Color.appSurface)
+                                        }
+                                        
+                                        // Expanded details
+                                        if expandedVocabIDs.contains(item.id) {
+                                            VStack(alignment: .leading, spacing: 12) {
+                                                Divider()
+                                                
+                                                Text("Pronunciation: / \(item.pronunciation) /")
+                                                    .font(.sfStandard(size: 13, weight: .semibold))
+                                                    .foregroundColor(.textPrimary)
+                                                
+                                                if let note = item.grammarNote {
+                                                    Text("Grammar Note: \(note)")
+                                                        .font(.sfStandard(size: 13))
+                                                        .foregroundColor(.textSecondary)
+                                                }
+                                                
+                                                // Verb Conjugation Table
+                                                if let verb = item.verbConjugation {
+                                                    VStack(alignment: .leading, spacing: 6) {
+                                                        Text(progressManager.loc("CONJUGATIONS", "BÖJNINGAR"))
+                                                            .font(.sfRounded(size: 10, weight: .black))
+                                                            .foregroundColor(.primaryBlue)
+                                                        
+                                                        VStack(alignment: .leading, spacing: 4) {
+                                                            conjugationRow(label: "Infinitive", form: verb.infinitive, example: verb.exPresent, exampleEn: verb.exPresentEn)
+                                                            conjugationRow(label: "Present", form: verb.present, example: verb.exPresent, exampleEn: verb.exPresentEn)
+                                                            conjugationRow(label: "Past", form: verb.past, example: verb.exPast, exampleEn: verb.exPastEn)
+                                                            conjugationRow(label: "Supinum", form: verb.supinum, example: verb.exSupinum, exampleEn: verb.exSupinumEn)
+                                                            conjugationRow(label: "Imperative", form: verb.imperative, example: "", exampleEn: "")
+                                                        }
+                                                        .padding(8)
+                                                        .background(Color.appSurfaceElevated)
+                                                        .cornerRadius(8)
+                                                    }
+                                                }
+                                            }
+                                            .padding(14)
+                                            .background(Color.appSurface.opacity(0.5))
+                                        }
+                                    }
+                                    .cornerRadius(12)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.appSurfaceElevated, lineWidth: 1)
+                                    )
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 20)
                     }
-                    .frame(maxHeight: 200)
-                    .padding(.horizontal, 20)
                 }
                 
                 // Resume info / Status
@@ -552,5 +656,30 @@ struct LessonDetailSheet: View {
                 .padding(.bottom, 24)
             }
         }
+    }
+    
+    @ViewBuilder
+    private func conjugationRow(label: String, form: String, example: String, exampleEn: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack {
+                Text(label)
+                    .font(.sfRounded(size: 11, weight: .bold))
+                    .foregroundColor(.textMuted)
+                    .frame(width: 80, alignment: .leading)
+                
+                Text(form)
+                    .font(.sfRounded(size: 13, weight: .bold))
+                    .foregroundColor(.primaryGold)
+                
+                Spacer()
+            }
+            if !example.isEmpty {
+                Text("\"\(example)\" — \(exampleEn)")
+                    .font(.sfStandard(size: 11))
+                    .foregroundColor(.textSecondary)
+                    .padding(.leading, 80)
+            }
+        }
+        .padding(.vertical, 2)
     }
 }
