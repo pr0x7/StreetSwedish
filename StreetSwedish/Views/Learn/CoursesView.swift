@@ -686,3 +686,176 @@ struct LessonDetailSheet: View {
         }
     }
 }
+
+struct DialogueLineAnalysisSheet: View {
+    let line: DialogueLine
+    @EnvironmentObject var progressManager: ProgressManager
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var speechHelper = SpeechHelper.shared
+    @State private var speedRate: Float = 0.5 // 0.5 for Normal, 0.32 for Slow
+    
+    var body: some View {
+        ZStack {
+            Color.appBackground.ignoresSafeArea()
+            
+            VStack(spacing: 24) {
+                // Drag handle
+                Capsule()
+                    .fill(Color.textMuted.opacity(0.3))
+                    .frame(width: 40, height: 5)
+                    .padding(.top, 12)
+                
+                VStack(spacing: 8) {
+                    Text(line.speakerID.capitalized)
+                        .font(.sfRounded(size: 24, weight: .black))
+                        .foregroundColor(.textPrimary)
+                    
+                    Text(progressManager.loc("Sentence Analysis", "Meningsanalys"))
+                        .font(.sfRounded(size: 12, weight: .bold))
+                        .foregroundColor(.primaryGold)
+                        .tracking(1.5)
+                }
+                
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 20) {
+                        // Swedish display card with TTS controls
+                        VStack(spacing: 16) {
+                            Text(line.swedish)
+                                .font(.sfRounded(size: 20, weight: .bold))
+                                .foregroundColor(.textPrimary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 8)
+                            
+                            HStack(spacing: 16) {
+                                Button(action: {
+                                    if speechHelper.isSpeaking && speechHelper.currentlySpeakingID == line.swedish {
+                                        speechHelper.stop()
+                                    } else {
+                                        speechHelper.speak(line.swedish, itemID: line.swedish, rate: speedRate)
+                                    }
+                                }) {
+                                    HStack {
+                                        Image(systemName: speechHelper.isSpeaking && speechHelper.currentlySpeakingID == line.swedish ? "stop.fill" : "speaker.wave.2.fill")
+                                        Text(speechHelper.isSpeaking && speechHelper.currentlySpeakingID == line.swedish ? "Stop" : "Listen")
+                                    }
+                                    .font(.sfRounded(size: 14, weight: .bold))
+                                    .foregroundColor(.appBackground)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                                    .background(Color.primaryGold)
+                                    .cornerRadius(12)
+                                }
+                                .buttonStyle(.plain)
+                                
+                                Picker("", selection: $speedRate) {
+                                    Text("Normal").tag(Float(0.5))
+                                    Text("Slow").tag(Float(0.32))
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(width: 140)
+                            }
+                        }
+                        .padding(16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.appSurface)
+                        .cornerRadius(16)
+                        
+                        // English Translation
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(progressManager.loc("TRANSLATION", "ÖVERSÄTTNING"))
+                                .font(.sfRounded(size: 11, weight: .bold))
+                                .foregroundColor(.textSecondary)
+                                .tracking(1.0)
+                            
+                            Text(line.english)
+                                .font(.sfStandard(size: 15))
+                                .foregroundColor(.textPrimary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(14)
+                        .background(Color.appSurface)
+                        .cornerRadius(12)
+                        
+                        // Alternate translations
+                        if line.alternativeSlang != nil || line.alternativeFormal != nil {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(progressManager.loc("ALTERNATIVE VARIATIONS", "ALTERNATIV UTTRYCK"))
+                                    .font(.sfRounded(size: 11, weight: .bold))
+                                    .foregroundColor(.textSecondary)
+                                    .tracking(1.0)
+                                
+                                if let slang = line.alternativeSlang {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(progressManager.loc("Street Slang", "Gatuslang"))
+                                            .font(.sfRounded(size: 10, weight: .black))
+                                            .foregroundColor(.accentStreet)
+                                        Text(slang)
+                                            .font(.sfStandard(size: 14, weight: .medium))
+                                            .foregroundColor(.textPrimary)
+                                    }
+                                    .padding(12)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.appSurfaceElevated)
+                                    .cornerRadius(10)
+                                }
+                                
+                                if let formal = line.alternativeFormal {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(progressManager.loc("Formal / Workplace", "Formellt / Arbetsplats"))
+                                            .font(.sfRounded(size: 10, weight: .black))
+                                            .foregroundColor(.accentWork)
+                                        Text(formal)
+                                            .font(.sfStandard(size: 14, weight: .medium))
+                                            .foregroundColor(.textPrimary)
+                                    }
+                                    .padding(12)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.appSurfaceElevated)
+                                    .cornerRadius(10)
+                                }
+                            }
+                        }
+                        
+                        // Cultural Note Card
+                        if let culture = line.culturalNote {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(progressManager.loc("CULTURAL & CONTEXT NOTE", "KULTURELL & KONTEXTUELL INFO"))
+                                    .font(.sfRounded(size: 11, weight: .bold))
+                                    .foregroundColor(.primaryGold)
+                                    .tracking(1.5)
+                                
+                                Text(culture)
+                                    .font(.sfStandard(size: 14))
+                                    .foregroundColor(.textPrimary)
+                                    .lineSpacing(4)
+                            }
+                            .padding(16)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.primaryGold.opacity(0.08))
+                            .cornerRadius(16)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.primaryGold.opacity(0.3), lineWidth: 1.5)
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                }
+                
+                Button(action: {
+                    dismiss()
+                }) {
+                    Text(progressManager.loc("Close", "Stäng"))
+                        .font(.sfRounded(size: 16, weight: .bold))
+                        .foregroundColor(.appBackground)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.primaryGold)
+                        .cornerRadius(16)
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 24)
+            }
+        }
+    }
+}
