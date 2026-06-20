@@ -49,6 +49,7 @@ public struct VocabItem: Codable, Identifiable, Hashable {
     public let registerLabel: RegisterLevel
     public let usageWarning: String?
     public let relatedItemIDs: [String]
+    public let grammarNote: String?
     
     public init(
         id: String,
@@ -61,7 +62,8 @@ public struct VocabItem: Codable, Identifiable, Hashable {
         cultureHook: String,
         registerLabel: RegisterLevel,
         usageWarning: String? = nil,
-        relatedItemIDs: [String] = []
+        relatedItemIDs: [String] = [],
+        grammarNote: String? = nil
     ) {
         self.id = id
         self.swedish = swedish
@@ -74,6 +76,7 @@ public struct VocabItem: Codable, Identifiable, Hashable {
         self.registerLabel = registerLabel
         self.usageWarning = usageWarning
         self.relatedItemIDs = relatedItemIDs
+        self.grammarNote = grammarNote
     }
 }
 
@@ -190,6 +193,7 @@ public struct Lesson: Codable, Identifiable, Hashable {
     public let exercises: [Exercise]
     public let characterIDs: [String]
     public let eliteOnly: Bool
+    public let grammarOverview: String?
     
     public init(
         id: String,
@@ -201,7 +205,8 @@ public struct Lesson: Codable, Identifiable, Hashable {
         dialogues: [Dialogue] = [],
         exercises: [Exercise] = [],
         characterIDs: [String] = [],
-        eliteOnly: Bool = false
+        eliteOnly: Bool = false,
+        grammarOverview: String? = nil
     ) {
         self.id = id
         self.moduleID = moduleID
@@ -213,6 +218,7 @@ public struct Lesson: Codable, Identifiable, Hashable {
         self.exercises = exercises
         self.characterIDs = characterIDs
         self.eliteOnly = eliteOnly
+        self.grammarOverview = grammarOverview
     }
 }
 
@@ -313,5 +319,11 @@ public struct SwedishVerb: Codable, Identifiable, Hashable {
         self.exPresent = exPresent; self.exPresentEn = exPresentEn
         self.exPast = exPast; self.exPastEn = exPastEn
         self.exSupinum = exSupinum; self.exSupinumEn = exSupinumEn
+    }
+}
+
+extension VocabItem {
+    public var verbConjugation: SwedishVerb? {
+        VerbData.allVerbs.first { $0.infinitive.lowercased() == self.swedish.lowercased() }
     }
 }
