@@ -102,15 +102,29 @@ public struct Character: Codable, Identifiable, Hashable {
 }
 
 // MARK: - Dialogue
-public struct DialogueLine: Codable, Hashable {
+public struct DialogueLine: Codable, Identifiable, Hashable {
+    public var id: String { swedish }
     public let speakerID: String
     public let swedish: String
     public let english: String
+    public let alternativeSlang: String?
+    public let alternativeFormal: String?
+    public let culturalNote: String?
     
-    public init(speakerID: String, swedish: String, english: String) {
+    public init(
+        speakerID: String,
+        swedish: String,
+        english: String,
+        alternativeSlang: String? = nil,
+        alternativeFormal: String? = nil,
+        culturalNote: String? = nil
+    ) {
         self.speakerID = speakerID
         self.swedish = swedish
         self.english = english
+        self.alternativeSlang = alternativeSlang
+        self.alternativeFormal = alternativeFormal
+        self.culturalNote = culturalNote
     }
 }
 
