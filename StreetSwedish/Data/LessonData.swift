@@ -1594,18 +1594,59 @@ public struct LessonData {
         Dialogue(
             title: "Planeringsmöte (Planning Meeting)",
             lines: [
-                DialogueLine(speakerID: "karin", swedish: "Maja, är alla feature-kort klara för nästa sprint?", english: "Maja, are all feature cards ready for the next sprint?"),
-                DialogueLine(speakerID: "maja", swedish: "Nästan, jag sitter i möte med designern nu. Jag löser det ASAP.", english: "Almost, I'm sitting in a meeting with the designer now. I will solve it ASAP."),
-                DialogueLine(speakerID: "karin", swedish: "Grymt. Pinga mig på Slack när du är klar så vi kan spika listan.", english: "Great. Ping me on Slack when you are done so we can nail down the list.")
+                DialogueLine(
+                    speakerID: "karin",
+                    swedish: "Maja, är alla feature-kort klara för nästa sprint?",
+                    english: "Maja, are all feature cards ready for the next sprint?",
+                    alternativeFormal: "Maja, är alla uppgiftsbeskrivningar klara för nästa planering?",
+                    culturalNote: "Sprint is a direct loanword from Agile software development, used universally in Swedish tech hubs. The formal translation swaps 'sprint' and 'feature-kort' for traditional terms."
+                ),
+                DialogueLine(
+                    speakerID: "maja",
+                    swedish: "Nästan, jag sitter i möte med designern nu. Jag löser det ASAP.",
+                    english: "Almost, I'm sitting in a meeting with the designer now. I will solve it ASAP.",
+                    alternativeSlang: "Nästan, sitter i möte med designern nu. Löser det direkt.",
+                    alternativeFormal: "Nästan, jag befinner mig i ett möte med formgivaren nu. Jag ska ordna det så snart som möjligt.",
+                    culturalNote: "ASAP is pronounced as individual letters (A-S-A-P) or 'så fort som möjligt'. 'Sitta i möte' is the standard Swedish phrase meaning to be occupied in a meeting."
+                ),
+                DialogueLine(
+                    speakerID: "karin",
+                    swedish: "Grymt. Pinga mig på Slack när du är klar så vi kan spika listan.",
+                    english: "Great. Ping me on Slack when you are done so we can nail down the list.",
+                    alternativeSlang: "Fett. Plinga mig på Slack sen så vi spikar listan.",
+                    alternativeFormal: "Utmärkt. Kontakta mig via Slack när du är färdig så att vi kan fastställa listan.",
+                    culturalNote: "'Grymt' literally means 'cruel' but colloquially means 'awesome/great'. 'Spika' literally means 'to nail' but in workplace context means to finalize/make a firm decision."
+                )
             ],
             pullQuote: "Jag löser det ASAP. (I'll solve it ASAP.)"
         ),
         Dialogue(
             title: "Slack Drama",
             lines: [
-                DialogueLine(speakerID: "maja", swedish: "Kan någon göra en code review på min pull request?", english: "Can someone do a code review on my pull request?"),
-                DialogueLine(speakerID: "erik", swedish: "Jag är på det! Men jag måste vabba i eftermiddag, så jag kollar nu.", english: "I'm on it! But I have to care for my sick child this afternoon, so I'll check now."),
-                DialogueLine(speakerID: "maja", swedish: "Tack Erik! Vi tar feedbacken offline sen.", english: "Thanks Erik! We will take the feedback offline later.")
+                DialogueLine(
+                    speakerID: "maja",
+                    swedish: "Kan någon göra en code review på min pull request?",
+                    english: "Can someone do a code review on my pull request?",
+                    alternativeSlang: "Kan nån kika på min pull request?",
+                    alternativeFormal: "Kan någon vänligen granska min kodändring?",
+                    culturalNote: "English terms like 'code review' and 'pull request' are fully integrated into modern Swedish developer terminology."
+                ),
+                DialogueLine(
+                    speakerID: "erik",
+                    swedish: "Jag är på det! Men jag måste vabba i eftermiddag, så jag kollar nu.",
+                    english: "I'm on it! But I have to care for my sick child this afternoon, so I'll check now.",
+                    alternativeSlang: "Jag löser det! Måste vabba i eftermiddag, kollar nu.",
+                    alternativeFormal: "Jag tar hand om det! Men jag behöver ta hand om ett sjukt barn i eftermiddag, så jag granskar det nu.",
+                    culturalNote: "'Vabba' is a unique Swedish verb meaning 'to stay home to care for a sick child while receiving government compensation' (VAB - vård av barn). It is a highly respected aspect of Swedish work-life balance."
+                ),
+                DialogueLine(
+                    speakerID: "maja",
+                    swedish: "Tack Erik! Vi tar feedbacken offline sen.",
+                    english: "Thanks Erik! We will take the feedback offline later.",
+                    alternativeSlang: "Tack som fan Erik! Vi tar feedbacken offline sen.",
+                    alternativeFormal: "Tack så mycket Erik! Vi kan diskutera återkopplingen enskilt senare.",
+                    culturalNote: "'Offline' is used as a Swenglish workspace idiom for discussing details in private rather than dragging out a public meeting."
+                )
             ],
             pullQuote: "Jag är på det! (I'm on it!)"
         )
