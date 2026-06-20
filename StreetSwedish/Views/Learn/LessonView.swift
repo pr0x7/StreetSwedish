@@ -104,6 +104,10 @@ public struct LessonView: View {
             // Prepare cards for introduction
             introStack = coordinator.lesson.vocabItems
         }
+        .sheet(item: $selectedLineForAnalysis) { line in
+            DialogueLineAnalysisSheet(line: line)
+                .environmentObject(progressManager)
+        }
     }
     
     // MARK: - Act 1: Scene Setting
@@ -312,6 +316,7 @@ public struct LessonView: View {
     
     // MARK: - Act 5: Mini Dialogue
     @State private var activeDialogueBubbleIndex = 0
+    @State private var selectedLineForAnalysis: DialogueLine? = nil
     
     private func act5DialogueView() -> some View {
         VStack(spacing: 20) {
@@ -337,21 +342,26 @@ public struct LessonView: View {
                                         .foregroundColor(.textSecondary)
                                     
                                     // Message Bubble
-                                    VStack(alignment: isUser ? .trailing : .leading, spacing: 4) {
-                                        Text(line.swedish)
-                                            .font(.sfStandard(size: 15, weight: .semibold))
-                                            .foregroundColor(.textPrimary)
-                                        Text(line.english)
-                                            .font(.sfStandard(size: 13))
-                                            .foregroundColor(.textSecondary)
+                                    Button(action: {
+                                        selectedLineForAnalysis = line
+                                    }) {
+                                        VStack(alignment: isUser ? .trailing : .leading, spacing: 4) {
+                                            Text(line.swedish)
+                                                .font(.sfStandard(size: 15, weight: .semibold))
+                                                .foregroundColor(.textPrimary)
+                                            Text(line.english)
+                                                .font(.sfStandard(size: 13))
+                                                .foregroundColor(.textSecondary)
+                                        }
+                                        .padding(14)
+                                        .background(isUser ? Color.primaryBlue.opacity(0.2) : Color.appSurface)
+                                        .cornerRadius(16, corners: isUser ? [.topLeft, .topRight, .bottomLeft] : [.topLeft, .topRight, .bottomRight])
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .stroke(isUser ? Color.primaryBlue : Color.clear, lineWidth: 1.5)
+                                        )
                                     }
-                                    .padding(14)
-                                    .background(isUser ? Color.primaryBlue.opacity(0.2) : Color.appSurface)
-                                    .cornerRadius(16, corners: isUser ? [.topLeft, .topRight, .bottomLeft] : [.topLeft, .topRight, .bottomRight])
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .stroke(isUser ? Color.primaryBlue : Color.clear, lineWidth: 1.5)
-                                    )
+                                    .buttonStyle(.plain)
                                 }
                                 .id(index)
                                 
