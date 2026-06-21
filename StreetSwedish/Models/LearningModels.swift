@@ -348,3 +348,38 @@ extension VocabItem {
         VerbData.allVerbs.first { $0.infinitive.lowercased() == self.swedish.lowercased() }
     }
 }
+
+// MARK: - SFI Exam Models
+public struct SFIExamSection: Codable, Identifiable, Hashable {
+    public let id: String
+    public let title: String
+    public let timeLimitSeconds: Int
+    public let exercises: [Exercise]
+    
+    public init(id: String, title: String, timeLimitSeconds: Int, exercises: [Exercise]) {
+        self.id = id
+        self.title = title
+        self.timeLimitSeconds = timeLimitSeconds
+        self.exercises = exercises
+    }
+}
+
+public struct SFIExam: Codable, Identifiable, Hashable {
+    public let id: String
+    public let courseLevel: String
+    public let title: String
+    public let sections: [SFIExamSection]
+    public let passingScore: Double
+    
+    public init(id: String, courseLevel: String, title: String, sections: [SFIExamSection], passingScore: Double = 0.7) {
+        self.id = id
+        self.courseLevel = courseLevel
+        self.title = title
+        self.sections = sections
+        self.passingScore = passingScore
+    }
+    
+    public var totalQuestions: Int {
+        sections.reduce(0) { $0 + $1.exercises.count }
+    }
+}

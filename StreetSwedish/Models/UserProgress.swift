@@ -102,6 +102,9 @@ public struct UserProgress: Codable, Hashable {
     public var lessonResumeActs: [String: Int]?
     public var lessonResumeStepIndices: [String: Int]?
     
+    // SFI Exam Scores
+    public var sfiExamScores: [String: Double]  // examID: bestScore (0.0 to 1.0)
+    
     public init(
         xp: Int = 0,
         streak: Int = 0,
@@ -125,7 +128,8 @@ public struct UserProgress: Codable, Hashable {
         categoryProgressMap: [String: Double] = [:],
         moduleProgressMap: [String: ModuleProgress] = [:],
         lessonResumeActs: [String: Int]? = [:],
-        lessonResumeStepIndices: [String: Int]? = [:]
+        lessonResumeStepIndices: [String: Int]? = [:],
+        sfiExamScores: [String: Double] = [:]
     ) {
         self.xp = xp
         self.streak = streak
@@ -150,5 +154,6 @@ public struct UserProgress: Codable, Hashable {
         self.moduleProgressMap = moduleProgressMap
         self.lessonResumeActs = lessonResumeActs
         self.lessonResumeStepIndices = lessonResumeStepIndices
+        self.sfiExamScores = sfiExamScores
     }
 }

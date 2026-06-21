@@ -227,4 +227,17 @@ public final class ProgressManager: ObservableObject {
     private func squareRoot(_ value: Double) -> Double {
         return value.squareRoot()
     }
+    
+    // MARK: - SFI Exam Scores
+    public func recordExamScore(examID: String, score: Double) {
+        let currentBest = progress.sfiExamScores[examID] ?? 0.0
+        if score > currentBest {
+            progress.sfiExamScores[examID] = score
+            save()
+        }
+    }
+    
+    public func examBestScore(examID: String) -> Double? {
+        return progress.sfiExamScores[examID]
+    }
 }
