@@ -93,6 +93,14 @@ public struct ExerciseRouter: View {
                     shakeTrigger: shakeTrigger,
                     onAnswerSubmitted: onAnswerSubmitted
                 )
+                
+            case .grammarParsing:
+                GrammarParsingView(
+                    exercise: exercise,
+                    answeredCorrectly: answeredCorrectly,
+                    shakeTrigger: shakeTrigger,
+                    onAnswerSubmitted: onAnswerSubmitted
+                )
             }
         }
         .padding(.horizontal, 16)
@@ -967,5 +975,190 @@ struct RoundedCorner: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+// MARK: - 10. Grammar Parsing View
+struct GrammarParsingView: View {
+    let exercise: Exercise
+    let answeredCorrectly: Bool?
+    let shakeTrigger: Bool
+    let onAnswerSubmitted: (String) -> Void
+    
+    @State private var selectedWords: [String] = []
+    @State private var poolWords: [String] = []
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            // Grammar Rule Badge
+            if let rule = exercise.grammarRule {
+                HStack(spacing: 6) {
+                    Image(systemName: "text.magnifyingglass")
+                        .font(.caption)
+                    Text(rule.uppercased())
+                        .font(.sfRounded(size: 11, weight: .black))
+                        .tracking(1.2)
+                }
+                .foregroundColor(.primaryGold)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.primaryGold.opacity(0.12))
+                .cornerRadius(8)
+            }
+            
+            Text(exercise.prompt)
+                .font(.sfRounded(size: 18, weight: .semibold))
+                .foregroundColor(.textPrimary)
+            
+            // Sentence Build Area
+            VStack {
+                if selectedWords.isEmpty {
+                    Text("Bygg meningen i rätt ordning")
+                        .font(.sfStandard(size: 14))
+                        .foregroundColor(.textMuted)
+                        .frame(maxWidth: .infinity, minHeight: 60)
+                } else {
+                    FlowLayout(spacing: 8) {
+                        ForEach(Array(selectedWords.enumerated()), id: \.offset) { index, word in
+                            Button(action: {
+                                if answeredCorrectly == nil {
+                                    removeWord(at: index)
+                                }
+                            }) {
+                                Text(word)
+                                    .font(.sfRounded(size: 15, weight: .bold))
+                                    .foregroundColor(.textPrimary)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(Color.primaryBlue)
+                                    .cornerRadius(10)
+                            }
+                            .disabled(answeredCorrectly != nil)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
+                }
+            }
+            .padding(16)
+            .frame(maxWidth: .infinity)
+            .background(Color.appSurface)
+            .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(
+                        answeredCorrectly == true ? Color.appSuccess :
+                        answeredCorrectly == false ? Color.appError : Color.clear,
+                        lineWidth: 2
+                    )
+            )
+            .offset(x: (answeredCorrectly == false && shakeTrigger) ? -10 : 0)
+            .animation(
+                (answeredCorrectly == false && shakeTrigger) ?
+                    .spring(response: 0.12, dampingFraction: 0.2).repeatCount(3, autoreverses: true) :
+                    .default,
+                value: shakeTrigger
+            )
+            
+            // Word Pool
+            FlowLayout(spacing: 8) {
+                ForEach(Array(poolWords.enumerated()), id: \.offset) { _, word in
+                    Button(action: {
+                        if answeredCorrectly == nil {
+                            addWord(word)
+                        }
+                    }) {
+                        Text(word)
+                            .font(.sfRounded(size: 15, weight: .bold))
+                            .foregroundColor(.textPrimary)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(Color.appSurfaceElevated)
+                            .cornerRadius(10)
+                    }
+                    .disabled(answeredCorrectly != nil)
+                }
+            }
+            .padding(.vertical, 8)
+            
+            // Submit Button
+            if answeredCorrectly == nil {
+                Button(action: {
+                    let fullSentence = selectedWords.joined(separator: " ")
+                    onAnswerSubmitted(fullSentence)
+                }) {
+                    Text("Kontrollera")
+                        .font(.sfRounded(size: 16, weight: .bold))
+                        .foregroundColor(.appBackground)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(selectedWords.isEmpty ? Color.textMuted : Color.primaryGold)
+                        .cornerRadius(16)
+                }
+                .disabled(selectedWords.isEmpty)
+            }
+            
+            // Grammar Breakdown Panel (shows after answer)
+            if answeredCorrectly != nil, let breakdown = exercise.grammaticalBreakdown {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "brain.head.profile")
+                            .font(.system(size: 16))
+                            .foregroundColor(.primaryGold)
+                        Text("GRAMMATISK ANALYS")
+                            .font(.sfRounded(size: 11, weight: .black))
+                            .foregroundColor(.primaryGold)
+                            .tracking(1.5)
+                    }
+                    
+                    // Correct sentence display
+                    Text(exercise.correctAnswer)
+                        .font(.sfRounded(size: 17, weight: .bold))
+                        .foregroundColor(.textPrimary)
+                    
+                    // Rule name
+                    if let rule = exercise.grammarRule {
+                        HStack(spacing: 6) {
+                            Image(systemName: "lightbulb.fill")
+                                .font(.caption)
+                                .foregroundColor(.accentStreet)
+                            Text(rule)
+                                .font(.sfRounded(size: 13, weight: .bold))
+                                .foregroundColor(.accentStreet)
+                        }
+                    }
+                    
+                    // Breakdown explanation
+                    Text(breakdown)
+                        .font(.sfStandard(size: 14))
+                        .foregroundColor(.textSecondary)
+                        .lineSpacing(4)
+                }
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.primaryGold.opacity(0.08))
+                .cornerRadius(16)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.primaryGold.opacity(0.25), lineWidth: 1.5)
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .animation(.spring(response: 0.4, dampingFraction: 0.8), value: answeredCorrectly)
+            }
+        }
+        .onAppear {
+            poolWords = exercise.words.shuffled()
+        }
+    }
+    
+    private func addWord(_ word: String) {
+        if let index = poolWords.firstIndex(of: word) {
+            poolWords.remove(at: index)
+            selectedWords.append(word)
+        }
+    }
+    
+    private func removeWord(at index: Int) {
+        let word = selectedWords.remove(at: index)
+        poolWords.append(word)
     }
 }
