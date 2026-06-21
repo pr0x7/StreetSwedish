@@ -1698,6 +1698,34 @@ public struct LessonData {
             prompt: "Complete the chat line with Maja. She says: 'Kan vi ta diskussionen på vår standup?'",
             correctAnswer: "Ja, låt oss ta det offline om det behövs.",
             options: ["Nej, jag ska vabba hela året.", "Ja, låt oss ta det offline om det behövs.", "Jag hatar fika."]
+        ),
+        // Grammar Parsing Exercises
+        Exercise(
+            id: "ex_l1_gp1",
+            type: .grammarParsing,
+            prompt: "Build the sentence: 'Yesterday I bought a beer' using Swedish V2 word order",
+            correctAnswer: "Igår köpte jag en öl",
+            words: ["jag", "köpte", "en öl", "Igår"],
+            grammaticalBreakdown: "Position 1 (Fundament): 'Igår' — the time adverb leads the sentence.\nPosition 2 (Verb): 'köpte' — the verb MUST be second (V2 rule).\nPosition 3 (Subject): 'jag' — when a non-subject leads, the subject inverts to after the verb.\nPosition 4 (Object): 'en öl' — the object fills the remaining slot.\n\nThis is INVERSION: because 'Igår' (not the subject) starts the sentence, 'jag' flips behind the verb.",
+            grammarRule: "V2-regeln (Verb Second Rule)"
+        ),
+        Exercise(
+            id: "ex_l1_gp2",
+            type: .grammarParsing,
+            prompt: "Build: 'I eat lunch every day' in Swedish",
+            correctAnswer: "Jag äter lunch varje dag",
+            words: ["varje", "Jag", "lunch", "äter", "dag"],
+            grammaticalBreakdown: "Position 1 (Subject/Fundament): 'Jag' — subject leads, so no inversion needed.\nPosition 2 (Verb): 'äter' — present tense of 'äta' (Group 4 irregular verb, -er ending).\nPosition 3 (Object): 'lunch' — direct object.\nPosition 4 (Adverb): 'varje dag' — time expression at the end.\n\nStandard SVO word order — no inversion because the subject is in first position.",
+            grammarRule: "V2-regeln (Standard SVO)"
+        ),
+        Exercise(
+            id: "ex_l1_gp3",
+            type: .grammarParsing,
+            prompt: "Build: 'On Slack we discuss the code' in Swedish",
+            correctAnswer: "På Slack diskuterar vi koden",
+            words: ["vi", "diskuterar", "koden", "På Slack"],
+            grammaticalBreakdown: "Position 1 (Fundament): 'På Slack' — location/manner adverb leads.\nPosition 2 (Verb): 'diskuterar' — present tense, -ar ending (Group 1 verb).\nPosition 3 (Subject): 'vi' — INVERSION: subject moves after verb because a non-subject started the sentence.\nPosition 4 (Object): 'koden' — 'the code' (definite form: kod + en).\n\nINVERSION again: 'På Slack' occupies the fundament, forcing the verb to position 2 and the subject to position 3.",
+            grammarRule: "V2-regeln (Inversion)"
         )
     ]
     
